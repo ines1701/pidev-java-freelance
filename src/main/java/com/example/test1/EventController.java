@@ -4,10 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -21,6 +25,9 @@ public class EventController implements Initializable {
 
     @FXML
     private Button btnActualiser;
+
+    @FXML
+    private Button btnEventType;
 
     @FXML
     private Button btnAjout;
@@ -258,6 +265,21 @@ public class EventController implements Initializable {
 
         return true;
     }
+
+    @FXML
+    void ouvrirEventType(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/EventType.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showErrorAlert("Erreur d'ouverture", "Une erreur est survenue lors de l'ouverture de l'interface EventType.");
+        }
+    }
+
+
 
 
 

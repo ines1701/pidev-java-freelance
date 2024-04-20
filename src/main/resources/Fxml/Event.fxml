@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="615.0" prefWidth="928.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test1.EventController">
    <children>
-      <VBox layoutX="73.0" layoutY="34.0" prefHeight="257.0" prefWidth="239.0">
+      <VBox layoutX="73.0" layoutY="34.0" prefHeight="387.0" prefWidth="239.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TITRE" />
             <TextField fx:id="tTitre" />
@@ -23,6 +23,7 @@
             <TextField fx:id="tLieu" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATE" wrappingWidth="73.31173706054688" />
             <DatePicker fx:id="tDate" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TYPE" wrappingWidth="63.310943603515625" />
          </children>
       </VBox>
       <ButtonBar layoutX="393.0" layoutY="136.0" prefHeight="40.0" prefWidth="490.0">
@@ -33,7 +34,7 @@
             <Button fx:id="btnActualiser" layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#actualiserTableEvent" prefHeight="26.0" prefWidth="174.0" text="Actualiser" />
         </buttons>
       </ButtonBar>
-      <TableView fx:id="TableEvent" layoutX="193.0" layoutY="314.0" prefHeight="244.0" prefWidth="544.0">
+      <TableView fx:id="TableEvent" layoutX="359.0" layoutY="200.0" prefHeight="323.0" prefWidth="544.0">
         <columns>
           <TableColumn fx:id="cTitre" prefWidth="98.4000244140625" text="TITRE" />
           <TableColumn fx:id="cDescrib" prefWidth="140.79995727539062" text="DESCRIB" />
@@ -41,5 +42,6 @@
             <TableColumn fx:id="cDate" minWidth="0.0" prefWidth="115.199951171875" text="Date" />
         </columns>
       </TableView>
+      <Button fx:id="btnEventType" layoutX="572.0" layoutY="67.0" mnemonicParsing="false" onAction="#ouvrirEventType" text="Event Type" />
    </children>
 </AnchorPane>
