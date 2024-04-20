@@ -13,6 +13,7 @@ public class Event {
 
     private Timestamp date;
 
+
     public Event() {
 
     }

@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="395.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test1.EventController">
+<AnchorPane prefHeight="615.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test1.EventController">
    <children>
-      <VBox layoutX="42.0" layoutY="28.0" prefHeight="257.0" prefWidth="239.0">
+      <VBox layoutX="73.0" layoutY="34.0" prefHeight="257.0" prefWidth="239.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TITRE" />
             <TextField fx:id="tTitre" />
@@ -26,7 +26,7 @@
             <DatePicker fx:id="tDate" />
          </children>
       </VBox>
-      <ButtonBar layoutX="21.0" layoutY="318.0" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar layoutX="530.0" layoutY="136.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button fx:id="btnAjout" mnemonicParsing="false" onAction="#AjoutEvent" text="Ajouter" />
             <Button fx:id="btnModif" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#ModifieEvent" text="Modifier" />
@@ -34,7 +34,7 @@
             <Button fx:id="btnActualiser" layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#actualiserTableEvent" prefHeight="26.0" prefWidth="174.0" text="Actualiser" />
         </buttons>
       </ButtonBar>
-      <TableView fx:id="TableEvent" layoutX="305.0" layoutY="46.0" prefHeight="239.0" prefWidth="482.0">
+      <TableView fx:id="TableEvent" layoutX="193.0" layoutY="314.0" prefHeight="244.0" prefWidth="544.0">
         <columns>
           <TableColumn fx:id="cTitre" prefWidth="98.4000244140625" text="TITRE" />
           <TableColumn fx:id="cDescrib" prefWidth="140.79995727539062" text="DESCRIB" />
@@ -42,5 +42,6 @@
             <TableColumn fx:id="cDate" minWidth="0.0" prefWidth="115.199951171875" text="Date" />
         </columns>
       </TableView>
+      <VBox layoutX="332.0" layoutY="45.0" prefHeight="211.0" prefWidth="186.0" />
    </children>
 </AnchorPane>

@@ -35,27 +35,36 @@ public class ServiceEvent implements CRUD<Event> {
 
 
     @Override
+
     public void updateOne(Event event) throws SQLException {
-        String req = "UPDATE `event` SET `titre`=?, `describ`=?, `lieu`=?, `date`=? WHERE `id`=?";
+        String req = "UPDATE event SET describ=?, lieu=?, date=? WHERE titre=?";
         PreparedStatement ps = cnx.prepareStatement(req);
 
-        ps.setString(1, event.getTitre());
-        ps.setString(2, event.getDescrib());
-        ps.setString(3, event.getLieu());
-        ps.setTimestamp(4, event.getDate()); // Utilisez setTimestamp pour mettre à jour la date
-        ps.setInt(5, event.getId()); // Utilisation de l'ID pour identifier l'événement à mettre à jour
+        ps.setString(1, event.getDescrib());
+        ps.setString(2, event.getLieu());
+        ps.setTimestamp(3, event.getDate());
+        ps.setString(4, event.getTitre()); // Utilisation du titre comme critère de recherche
 
         ps.executeUpdate();
     }
 
 
-    @Override
+
+
+
     public void deleteOne(Event event) throws SQLException {
-        String req = "DELETE FROM `event` WHERE `id`=?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, event.getId());
-        ps.executeUpdate();
+        // Utilisez les attributs de l'événement pour construire la requête de suppression
+        String query = "DELETE FROM event WHERE titre = ? AND describ = ? AND lieu = ? AND date = ?";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setString(1, event.getTitre());
+        statement.setString(2, event.getDescrib());
+        statement.setString(3, event.getLieu());
+        statement.setTimestamp(4, event.getDate());
+        statement.executeUpdate();
     }
+
+
+
 
     @Override
     public ObservableList<Event> selectAll() throws SQLException {
@@ -77,4 +86,25 @@ public class ServiceEvent implements CRUD<Event> {
 
         return eventsList;
     }
+
+    public Event selectById(int eventId) throws SQLException {
+        String query = "SELECT * FROM event WHERE id = ?";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setInt(1, eventId);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            Event event = new Event();
+            event.setId(resultSet.getInt("id"));
+            event.setTitre(resultSet.getString("titre"));
+            event.setDescrib(resultSet.getString("describ"));
+            event.setLieu(resultSet.getString("lieu"));
+            event.setDate(resultSet.getTimestamp("date"));
+            return event;
+        } else {
+            // Gérer le cas où aucun événement avec l'ID spécifié n'est trouvé
+            return null;
+        }
+    }
+
 }

@@ -93,9 +93,13 @@ public class EventController implements Initializable {
                 eventSelectionnee.setLieu(tLieu.getText());
                 eventSelectionnee.setDate(sqlDate);
 
+                // Appeler la méthode de mise à jour de ServiceEvent
                 serviceEvent.updateOne(eventSelectionnee);
 
-                TableEvent.refresh();
+                // Actualiser la TableView après la mise à jour
+                afficherEvent();
+
+                // Effacer les champs de saisie
                 clearFields();
             } catch (NumberFormatException | SQLException e) {
                 showErrorAlert("Erreur lors de la modification", e.getMessage());
@@ -109,8 +113,13 @@ public class EventController implements Initializable {
     void SupprimeEvent(ActionEvent event) {
         if (eventSelectionnee != null) {
             try {
+                // Appeler la méthode de suppression de ServiceEvent
                 serviceEvent.deleteOne(eventSelectionnee);
+
+                // Supprimer l'événement de la TableView
                 TableEvent.getItems().remove(eventSelectionnee);
+
+                // Effacer les champs de saisie
                 clearFields();
             } catch (SQLException e) {
                 showErrorAlert("Erreur lors de la suppression", e.getMessage());
@@ -119,6 +128,7 @@ public class EventController implements Initializable {
             showErrorAlert("Aucun event sélectionnée", "Veuillez sélectionner un event à supprimer.");
         }
     }
+
 
     private void clearFields() {
         tTitre.clear();
@@ -144,6 +154,26 @@ public class EventController implements Initializable {
         afficherEvent();
     }
 
+
+
+
+
+    private void initializeTableView() {
+        cTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        cDescrib.setCellValueFactory(new PropertyValueFactory<>("describ"));
+        cLieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+        cDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        // Appeler la méthode pour afficher les détails de l'événement sélectionné lorsque la sélection change
+        TableEvent.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                eventSelectionnee = newSelection;
+                afficherEventSelectionnee();
+            }
+        });
+
+        afficherEvent();
+    }
     private void afficherEvent() {
         try {
             serviceEvent = new ServiceEvent();
@@ -159,7 +189,6 @@ public class EventController implements Initializable {
             tTitre.setText(eventSelectionnee.getTitre());
             tDescrib.setText(eventSelectionnee.getDescrib());
             tLieu.setText(eventSelectionnee.getLieu());
-
             // Afficher la date sélectionnée dans le DatePicker
             tDate.setValue(eventSelectionnee.getDate().toLocalDateTime().toLocalDate());
         }
