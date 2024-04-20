@@ -61,6 +61,11 @@ public class EventController implements Initializable {
 
     @FXML
     void AjoutEvent(ActionEvent event) {
+        // Vérifier la validité des champs
+        if (!validateFields()) {
+            return; // Arrêter l'exécution si les champs ne sont pas valides
+        }
+
         try {
             Event e = new Event(
                     tTitre.getText(),
@@ -79,6 +84,11 @@ public class EventController implements Initializable {
 
     @FXML
     void ModifieEvent(ActionEvent event) {
+        // Vérifier la validité des champs
+        if (!validateFields()) {
+            return; // Arrêter l'exécution si les champs ne sont pas valides
+        }
+
         if (eventSelectionnee != null) {
             try {
                 // Récupérer la date sélectionnée du DatePicker
@@ -108,6 +118,7 @@ public class EventController implements Initializable {
             showErrorAlert("Aucun EVENT sélectionnée", "Veuillez sélectionner un EVENT à modifier.");
         }
     }
+
 
     @FXML
     void SupprimeEvent(ActionEvent event) {
@@ -205,5 +216,49 @@ public class EventController implements Initializable {
     void actualiserTableEvent(ActionEvent event) {
         afficherEvent();
     }
+
+    private boolean validateFields() {
+
+
+        String titre = tTitre.getText();
+        String describ = tDescrib.getText();
+        String lieu = tLieu.getText();
+        LocalDate date = tDate.getValue();
+        // Vérifier que la description a au moins 15 caractères
+
+        if (titre.isEmpty() || describ.isEmpty() || lieu.isEmpty() || date == null) {
+            showErrorAlert("Champs obligatoires non remplis", "Veuillez remplir tous les champs obligatoires.");
+            return false;
+        }
+
+
+        // Vérifier que le titre a un maximum de 15 caractères
+        if (titre.length() > 15) {
+            showErrorAlert("Titre trop long", "Le titre ne peut pas dépasser 15 caractères.");
+            return false;
+        }
+
+        if (describ.length() < 15) {
+            showErrorAlert("Description trop courte", "La description doit avoir au moins 15 caractères.");
+            return false;
+        }
+
+        // Vérifier que le lieu n'est pas vide
+        if (lieu.isEmpty()) {
+            showErrorAlert("Lieu manquant", "Veuillez spécifier un lieu pour l'événement.");
+            return false;
+        }
+
+        // Vérifiez que la date n'est pas vide et qu'elle est postérieure à la date actuelle
+        if (date == null || date.isBefore(LocalDate.now())) {
+            showErrorAlert("Erreur de saisie", "Veuillez sélectionner une date valide (postérieure à aujourd'hui).");
+            return false;
+        }
+
+
+        return true;
+    }
+
+
 
 }

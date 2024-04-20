@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="615.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test1.EventController">
+<AnchorPane prefHeight="615.0" prefWidth="928.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test1.EventController">
    <children>
       <VBox layoutX="73.0" layoutY="34.0" prefHeight="257.0" prefWidth="239.0">
          <children>
@@ -26,9 +25,9 @@
             <DatePicker fx:id="tDate" />
          </children>
       </VBox>
-      <ButtonBar layoutX="530.0" layoutY="136.0" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar layoutX="393.0" layoutY="136.0" prefHeight="40.0" prefWidth="490.0">
         <buttons>
-          <Button fx:id="btnAjout" mnemonicParsing="false" onAction="#AjoutEvent" text="Ajouter" />
+          <Button fx:id="btnAjout" mnemonicParsing="false" onAction="#AjoutEvent" prefHeight="36.0" text="Ajouter" />
             <Button fx:id="btnModif" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#ModifieEvent" text="Modifier" />
             <Button fx:id="btnSupp" layoutX="48.0" layoutY="17.0" mnemonicParsing="false" onAction="#SupprimeEvent" prefHeight="26.0" prefWidth="174.0" text="Supprimer" />
             <Button fx:id="btnActualiser" layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#actualiserTableEvent" prefHeight="26.0" prefWidth="174.0" text="Actualiser" />
@@ -42,6 +41,5 @@
             <TableColumn fx:id="cDate" minWidth="0.0" prefWidth="115.199951171875" text="Date" />
         </columns>
       </TableView>
-      <VBox layoutX="332.0" layoutY="45.0" prefHeight="211.0" prefWidth="186.0" />
    </children>
 </AnchorPane>
