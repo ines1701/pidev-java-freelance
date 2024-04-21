@@ -1,9 +1,10 @@
-module com.example.main {
+module com.example.jessem {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    requires java.desktop;
 
-    requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.main to javafx.fxml;
-    exports com.example.main;
+    opens com.example.jessem to javafx.fxml;
+    exports com.example.jessem;
 }

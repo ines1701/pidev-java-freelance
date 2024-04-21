@@ -4,37 +4,89 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12441f95-ad02-4b4e-8a5a-b0c576dfa901" name="Changes" comment="" />
+    <list default="true" id="ee2ba3da-d55a-4149-99ca-cde2633784d2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
-  <component name="ProjectId" id="2fL0SsUxgmBckerKlYqFtfxvjQk" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ezvVToOTCVV9zAATyKGwXwiHow" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gestionpaiement&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/pi dev/jessem&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.18965517&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.jessem.App" />
+      <module name="jessem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.jessem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="12441f95-ad02-4b4e-8a5a-b0c576dfa901" name="Changes" comment="" />
-      <created>1713565054848</created>
+      <changelist id="ee2ba3da-d55a-4149-99ca-cde2633784d2" name="Changes" comment="" />
+      <created>1712920247590</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713565054848</updated>
-      <workItem from="1713565055874" duration="4000" />
+      <updated>1712920247590</updated>
+      <workItem from="1712920248680" duration="13685000" />
+      <workItem from="1712943374949" duration="6985000" />
+      <workItem from="1713014828188" duration="7498000" />
+      <workItem from="1713028916148" duration="87000" />
+      <workItem from="1713088078993" duration="3488000" />
+      <workItem from="1713115567780" duration="4413000" />
+      <workItem from="1713184603967" duration="3218000" />
+      <workItem from="1713200914848" duration="2793000" />
+      <workItem from="1713531307503" duration="2272000" />
+      <workItem from="1713533691144" duration="6557000" />
+      <workItem from="1713621480768" duration="3234000" />
+      <workItem from="1713696041245" duration="19920000" />
     </task>
     <servers />
   </component>
