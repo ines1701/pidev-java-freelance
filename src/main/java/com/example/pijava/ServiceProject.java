@@ -83,4 +83,20 @@ public class ServiceProject implements CRUD<Project> {
 
         return projectList;
     }
-}
+
+    public boolean existsWithSameTitleAndCategory(String titre, String categorie) throws SQLException {
+        String query = "SELECT COUNT(*) FROM project WHERE titre = ? AND categorie = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, titre);
+            statement.setString(2, categorie);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        }
+        return false;
+    }
+    }
+

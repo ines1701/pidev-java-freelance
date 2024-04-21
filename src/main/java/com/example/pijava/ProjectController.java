@@ -152,9 +152,15 @@ public class ProjectController {
                 return;
             }
 
+            // Check if a project with the same title and category already exists
+            ServiceProject serviceProject = new ServiceProject();
+            if (serviceProject.existsWithSameTitleAndCategory(titre, categorie)) {
+                showErrorAlert("Erreur de saisie", "Un projet avec le même titre et la même catégorie existe déjà.");
+                return;
+            }
+
             // If all validation checks pass, create a new Project object and insert it into the database
             Project project = new Project(titre, categorie, periode, portee, description, budget);
-            ServiceProject serviceProject = new ServiceProject();
             serviceProject.insertOne(project);
 
             // Refresh the TableView to display the newly added project
