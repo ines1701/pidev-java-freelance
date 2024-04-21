@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CondidatureController">
+   <children>
+      <VBox prefHeight="78.0" prefWidth="441.0" style="-fx-background-color: #5fcf80;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplir le formulaire !" textAlignment="CENTER" wrappingWidth="439.22061233222485" VBox.vgrow="NEVER">
+               <font>
+                  <Font name="Bell MT" size="33.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <Text layoutX="55.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom " />
+      <Text layoutX="56.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" />
+      <Text layoutX="55.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <Text layoutX="56.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro du Téléphone" />
+      <Text layoutX="55.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lettre de motivation" />
+      <Text layoutX="55.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CV " />
+      <TextField fx:id="nomC" layoutX="192.0" layoutY="110.0" promptText="Nom" />
+      <TextField fx:id="prenomC" layoutX="192.0" layoutY="142.0" prefHeight="26.0" prefWidth="150.0" promptText="Prénom" />
+      <TextField fx:id="emailC" layoutX="194.0" layoutY="175.0" promptText="Email" />
+      <TextField fx:id="numC" layoutX="194.0" layoutY="205.0" promptText="Numéro Tel" />
+      <Button fx:id="lettreC" layoutX="195.0" layoutY="239.0" mnemonicParsing="false" onAction="#chooseLettre" prefHeight="26.0" prefWidth="150.0" text="Lettre de motivation" textFill="#5fcf80" />
+      <Button fx:id="cvC" layoutX="195.0" layoutY="270.0" mnemonicParsing="false" onAction="#chooseCv" prefHeight="26.0" prefWidth="150.0" text="CV" textFill="#5fcf80" />
+      <Button fx:id="annulerC" layoutX="147.0" layoutY="336.0" mnemonicParsing="false" onAction="#annulerCondi" style="-fx-background-color: #cf0b60;" text="Fermer" textFill="WHITE" />
+      <Button fx:id="postulerC" layoutX="229.0" layoutY="336.0" mnemonicParsing="false" onAction="#ajouterCondidature" style="-fx-background-color: #5fcf80;" text="Postuler" textFill="WHITE" />
+      <TextField fx:id="lettre" layoutX="353.0" layoutY="239.0" prefHeight="26.0" prefWidth="41.0" />
+      <TextField fx:id="cv" layoutX="353.0" layoutY="270.0" prefHeight="26.0" prefWidth="41.0" />
+      <Label fx:id="projectTitleLabel" layoutX="229.0" layoutY="78.0" text="Label" textFill="TRANSPARENT" />
+   </children>
+</AnchorPane>
