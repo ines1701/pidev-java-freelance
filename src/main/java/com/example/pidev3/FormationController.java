@@ -100,6 +100,13 @@ public class FormationController {
             if (day < 1 || day > 31 || month < 1 || month > 12 || year != 2024) {
                 throw new IllegalArgumentException("La date doit être valide : jour (1-31), mois (1-12), année (2024).");
             }
+            ServiceFormation sf= new ServiceFormation();
+            // Vérifier si un événement avec le même titre existe déjà
+            if (sf.existsByTitre(titref.getText())) {
+                showErrorAlert("Erreur de saisie", "Une formation avec le même titre existe déjà.");
+                return; // Arrêter l'exécution si un événement avec le même titre existe déjà
+            }
+
 
             Formation p = new Formation(titref.getText(), categorief.getText(), tuteur.getText(), updated.getText());
             ServiceFormation sp = new ServiceFormation();
@@ -115,6 +122,7 @@ public class FormationController {
             showErrorAlert("Erreur de saisie", e.getMessage());
         }
     }
+
 
     /*@FXML
     void modifierFormation(ActionEvent event) {

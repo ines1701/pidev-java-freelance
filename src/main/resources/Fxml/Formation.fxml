@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="585.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev3.FormationController">
     <children>
@@ -35,13 +36,30 @@
             </columns>
         </TableView>
       <Accordion />
-      <HBox alignment="CENTER" layoutX="44.0" layoutY="223.0" prefHeight="36.0" prefWidth="405.0">
+      <HBox alignment="CENTER" layoutX="5.0" layoutY="223.0" prefHeight="36.0" prefWidth="517.0">
          <children>
-                <Button fx:id="btnAjoutf" mnemonicParsing="false" onAction="#ajouterFormation" text="ajouter " />
-            <Button fx:id="btneditf" mnemonicParsing="false" onAction="#modifierFormation" text="modifier" />
-            <Button fx:id="btnsuppf" mnemonicParsing="false" onAction="#supprimerFormation" text="supprimer" />
-            <Button fx:id="ouvrirId" mnemonicParsing="false" onAction="#ouvrirRessources" text="ouvrir" />
+                <Button fx:id="btnAjoutf" mnemonicParsing="false" onAction="#ajouterFormation" prefHeight="62.0" prefWidth="72.0" style="-fx-background-color: #2be475;" text="ajouter " textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="btneditf" mnemonicParsing="false" onAction="#modifierFormation" prefHeight="62.0" prefWidth="77.0" style="-fx-background-color: #3790ef;" text="modifier" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="btnsuppf" mnemonicParsing="false" onAction="#supprimerFormation" prefHeight="62.0" prefWidth="89.0" style="-fx-background-color: #ea5353;" text="supprimer" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="ouvrirId" mnemonicParsing="false" onAction="#ouvrirRessources" prefHeight="36.0" prefWidth="103.0" text="ouvrir">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
          </children>
       </HBox>
+      <Label layoutX="500.0" layoutY="101.0" style="-fx-background-color: #00000;" text="les formations disponibles" textFill="#2be475">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

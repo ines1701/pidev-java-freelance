@@ -1,11 +1,13 @@
 package com.example.pidev3;
+import javafx.scene.control.TextField;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class ServiceFormation implements CRUD<Formation>{
-    private Connection cnx ;
+public class ServiceFormation implements CRUD<Formation> {
+    private Connection cnx;
 
     public ServiceFormation() {
         cnx = DBConnection.getInstance().getCnx();
@@ -61,7 +63,7 @@ public class ServiceFormation implements CRUD<Formation>{
 
         ResultSet rs = st.executeQuery(req);
 
-        while (rs.next()){
+        while (rs.next()) {
             Formation p = new Formation();
 
             p.setId(rs.getInt(("id")));
@@ -117,44 +119,58 @@ public class ServiceFormation implements CRUD<Formation>{
     }
 
 
+    public int getFormationIdByTitre(String titre) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int formationId = -1; // Valeur par défaut si aucun ID n'est trouvé
 
-        public int getFormationIdByTitre(String titre) throws SQLException {
-            Connection conn = null;
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            int formationId = -1; // Valeur par défaut si aucun ID n'est trouvé
+        try {
+            // Obtenir une connexion à la base de données à partir de DBConnection
+            conn = DBConnection.getInstance().getCnx();
 
-            try {
-                // Obtenir une connexion à la base de données à partir de DBConnection
-                conn = DBConnection.getInstance().getCnx();
+            // Préparer la requête SQL
+            String query = "SELECT id FROM formation WHERE titre = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, titre);
 
-                // Préparer la requête SQL
-                String query = "SELECT id FROM formation WHERE titre = ?";
-                stmt = conn.prepareStatement(query);
-                stmt.setString(1, titre);
+            // Exécuter la requête SQL
+            rs = stmt.executeQuery();
 
-                // Exécuter la requête SQL
-                rs = stmt.executeQuery();
-
-                // Récupérer l'ID de la formation
-                if (rs.next()) {
-                    formationId = rs.getInt("id");
-                }
-            } finally {
-                // Fermer les ressources
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                // Ne pas fermer la connexion ici car elle est gérée par DBConnection
+            // Récupérer l'ID de la formation
+            if (rs.next()) {
+                formationId = rs.getInt("id");
             }
-
-            return formationId;
+        } finally {
+            // Fermer les ressources
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            // Ne pas fermer la connexion ici car elle est gérée par DBConnection
         }
+
+        return formationId;
     }
 
+
+    public boolean existsByTitre(String titre) throws SQLException {
+        // Vérifier si un événement avec le même titre existe dans la base de données
+        // Vous pouvez utiliser une requête SQL pour effectuer cette vérification
+        // Par exemple, vous pouvez utiliser une requête SELECT avec une clause WHERE pour vérifier l'existence de l'événement avec le titre donné
+        String query = "SELECT COUNT(*) FROM formation WHERE titre = ?";
+
+        try (PreparedStatement statement = cnx.prepareStatement(query)) { // Utilisation de cnx au lieu de connection
+            statement.setString(1, titre);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+            return count > 0;
+        }
+    }
+}
 
 
 
