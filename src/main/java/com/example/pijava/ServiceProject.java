@@ -29,7 +29,7 @@ public class ServiceProject implements CRUD<Project> {
 
     @Override
     public void updateOne(Project project) throws SQLException {
-        String sql = "UPDATE project SET categorie=?, periode=?, portee=?, description=?, budget=? WHERE titre=?";
+        String sql = "UPDATE project SET categorie=?, periode=?, portee=?, description=?, budget=?,titre=? WHERE id=?";
 
         try (PreparedStatement statement = cnx.prepareStatement(sql)) {
             statement.setString(1, project.getCategorie());
@@ -38,7 +38,7 @@ public class ServiceProject implements CRUD<Project> {
             statement.setString(4, project.getDescription());
             statement.setDouble(5, project.getBudget());
             statement.setString(6, project.getTitre());
-            /*statement.setInt(7,project.getId());// Assuming you want to update based on the title*/
+            statement.setInt(7,project.getId());// Assuming you want to update based on the title
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated == 0) {
