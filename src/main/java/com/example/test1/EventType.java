@@ -5,7 +5,7 @@ public class EventType {
     private int id;
     private String label;
 
-    public EventType(EventType label) {
+    public EventType() {
 
     }
 
@@ -28,6 +28,10 @@ public class EventType {
 
 
     public EventType(String label) {
+        this.label = label;
+    }
+
+    public EventType(int id, String label) {
         this.id = id;
         this.label = label;
     }

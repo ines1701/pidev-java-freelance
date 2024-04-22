@@ -28,7 +28,7 @@
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATE" wrappingWidth="73.31173706054688" />
                 <DatePicker fx:id="tDate" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TYPE" wrappingWidth="63.310943603515625" />
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="choixType" prefWidth="150.0" />
             <Label prefHeight="28.0" prefWidth="74.0" />
             </children>
         </VBox>
@@ -59,6 +59,6 @@
             <Font size="25.0" />
          </font>
       </Text>
-        <Button fx:id="btnEventType" layoutX="635.0" layoutY="511.0" mnemonicParsing="false" onAction="#ouvrirEventType" text="Event Type" />
+      <Button fx:id="btnType" layoutX="939.0" layoutY="488.0" mnemonicParsing="false" onAction="#openType" text="TYPE" />
     </children>
 </AnchorPane>

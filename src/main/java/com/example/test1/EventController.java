@@ -16,7 +16,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class EventController implements Initializable {
 
@@ -63,6 +65,9 @@ public class EventController implements Initializable {
     @FXML
     private DatePicker tDate;
 
+    @FXML
+    private ChoiceBox<String> choixType;
+
     private ServiceEvent serviceEvent;
     private Event eventSelectionnee;
 
@@ -73,14 +78,25 @@ public class EventController implements Initializable {
             return; // Arrêter l'exécution si les champs ne sont pas valides
         }
 
+        // Récupérer le titre de l'événement à ajouter
+        String titre = tTitre.getText();
+
         try {
+            // Vérifier si un événement avec le même titre existe déjà
+            if (serviceEvent.existsByTitre(titre)) {
+                showErrorAlert("Erreur de saisie", "Un événement avec le même titre existe déjà.");
+                return; // Arrêter l'exécution si un événement avec le même titre existe déjà
+            }
+
+            // Créer un nouvel événement
             Event e = new Event(
-                    tTitre.getText(),
+                    titre,
                     tDescrib.getText(),
                     tLieu.getText(),
                     // Convertir la LocalDate en Timestamp
                     tDate.getValue() != null ? Timestamp.valueOf(tDate.getValue().atStartOfDay()) : null);
 
+            // Insérer l'événement dans la base de données
             serviceEvent.insertOne(e);
         } catch (SQLException e) {
             showErrorAlert("Erreur de saisie", "Une erreur est survenue lors de l'ajout de l'événement.");
@@ -89,43 +105,42 @@ public class EventController implements Initializable {
         }
     }
 
+
+
     @FXML
     void ModifieEvent(ActionEvent event) {
-        // Vérifier la validité des champs
-        if (!validateFields()) {
-            return; // Arrêter l'exécution si les champs ne sont pas valides
-        }
-
         if (eventSelectionnee != null) {
-            try {
-                // Récupérer la date sélectionnée du DatePicker
-                LocalDate localDate = tDate.getValue();
+            if (validateFields()) {
+                try {
 
-                // Convertir la LocalDate en Timestamp
-                Timestamp sqlDate = localDate != null ? Timestamp.valueOf(localDate.atStartOfDay()) : null;
+                    // Récupérer la date sélectionnée du DatePicker
+                    LocalDate localDate = tDate.getValue();
 
-                // Mettre à jour les attributs de l'événement sélectionné
-                eventSelectionnee.setTitre(tTitre.getText());
-                eventSelectionnee.setDescrib(tDescrib.getText());
-                eventSelectionnee.setLieu(tLieu.getText());
-                eventSelectionnee.setDate(sqlDate);
+                    // Convertir la LocalDate en Timestamp
+                    Timestamp sqlDate = localDate != null ? Timestamp.valueOf(localDate.atStartOfDay()) : null;
 
-                // Appeler la méthode de mise à jour de ServiceEvent
-                serviceEvent.updateOne(eventSelectionnee);
+                    // Mettre à jour les attributs de l'événement sélectionné
+                    eventSelectionnee.setTitre(tTitre.getText());
+                    eventSelectionnee.setDescrib(tDescrib.getText());
+                    eventSelectionnee.setLieu(tLieu.getText());
+                    eventSelectionnee.setDate(sqlDate);
 
-                // Actualiser la TableView après la mise à jour
-                afficherEvent();
+                    // Appeler la méthode de mise à jour de ServiceEvent
+                    serviceEvent.updateOne(eventSelectionnee);
 
-                // Effacer les champs de saisie
-                clearFields();
-            } catch (NumberFormatException | SQLException e) {
-                showErrorAlert("Erreur lors de la modification", e.getMessage());
+                    // Actualiser la TableView après la mise à jour
+                    afficherEvent();
+
+                    // Effacer les champs de saisie
+                    clearFields();
+                } catch (NumberFormatException | SQLException e) {
+                    showErrorAlert("Erreur lors de la modification", e.getMessage());
+                }
             }
         } else {
             showErrorAlert("Aucun EVENT sélectionnée", "Veuillez sélectionner un EVENT à modifier.");
         }
     }
-
 
     @FXML
     void SupprimeEvent(ActionEvent event) {
@@ -157,11 +172,21 @@ public class EventController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        // Initialiser le service de gestion des types d'événements
+        ServiceEventType serviceEventType = new ServiceEventType();
+        loadEventTypes();
+
+        // Charger les types d'événements dans la ChoiceBox
+
+        // Configuration des colonnes de la TableView
         cTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         cDescrib.setCellValueFactory(new PropertyValueFactory<>("describ"));
         cLieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-        cDate.setCellValueFactory(new PropertyValueFactory<>("date")); // Lier la colonne de date
+        cDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 
+        // Configuration du listener pour la sélection dans la TableView
         TableEvent.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 eventSelectionnee = newSelection;
@@ -169,9 +194,9 @@ public class EventController implements Initializable {
             }
         });
 
+        // Affichage des événements dans la TableView
         afficherEvent();
     }
-
 
 
 
@@ -222,6 +247,7 @@ public class EventController implements Initializable {
     @FXML
     void actualiserTableEvent(ActionEvent event) {
         afficherEvent();
+        loadEventTypes(); // Actualiser la liste des types d'événements
     }
 
     private boolean validateFields() {
@@ -268,19 +294,48 @@ public class EventController implements Initializable {
 
     @FXML
     void ouvrirEventType(ActionEvent event) {
+
+    }
+
+    @FXML
+    void openType(ActionEvent event) {
         try {
+            // Charger EventType.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/EventType.fxml"));
             Scene scene = new Scene(loader.load());
+
+            // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
             stage.setScene(scene);
+
+            // Afficher la nouvelle fenêtre
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
             showErrorAlert("Erreur d'ouverture", "Une erreur est survenue lors de l'ouverture de l'interface EventType.");
         }
     }
 
 
 
+    private void loadEventTypes() {
+        try {
+            // Créer une instance de ServiceEventType
+            ServiceEventType serviceEventType = new ServiceEventType();
+
+            // Récupérer les types d'événements depuis la base de données en utilisant le service ServiceEventType
+            List<String> eventTypeLabels = serviceEventType.getAllTypes();
+
+            // Convertir la liste en ObservableList pour la liaison avec la ChoiceBox
+            ObservableList<String> observableEventTypes = FXCollections.observableArrayList(eventTypeLabels);
+
+            // Lier les données à la ChoiceBox
+            choixType.setItems(observableEventTypes);
+        } catch (SQLException e) {
+            // Gérer les exceptions si une erreur survient lors du chargement des types d'événements depuis la base de données
+            showErrorAlert("Erreur de chargement", "Une erreur est survenue lors du chargement des types d'événements.");
+        }
+    }
 
 
 }
