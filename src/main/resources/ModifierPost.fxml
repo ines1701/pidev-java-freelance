@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierPost">
+
+    <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Label text="Modifier le post" />
+
+        <HBox spacing="10">
+            <Label text="Description :" />
+            <TextArea fx:id="descriptionTextArea" prefHeight="100" prefWidth="310.0" />
+            <Label fx:id="descriptionErrorLabel" prefHeight="97.0" prefWidth="158.0" />
+        </HBox>
+
+        <!-- Ajoutez ici d'autres champs pour les attributs de la classe Post -->
+        <HBox spacing="10">
+            <Label text="Nom :" />
+            <TextField fx:id="nomTextField" />
+            <Label fx:id="nomErrorLabel" prefHeight="24.0" prefWidth="251.0" style="-fx-text-fill: red;" text="" />
+        </HBox>
+
+        <Button onAction="#modifierPost" text="Modifier" />
+    </VBox>
+
+</AnchorPane>
