@@ -11,70 +11,77 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev3.RessourceController">
    <top>
-      <VBox alignment="TOP_CENTER" prefHeight="617.0" prefWidth="910.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="607.0" prefWidth="910.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="301.0" prefWidth="910.0">
+            <AnchorPane prefHeight="302.0" prefWidth="852.0">
                <children>
-                  <TextField fx:id="description" layoutX="107.0" layoutY="139.0" prefHeight="26.0" prefWidth="237.0">
+                  <TextField fx:id="description" layoutX="284.0" layoutY="205.0" prefHeight="26.0" prefWidth="237.0">
                      <font>
                         <Font name="Arial Narrow Italic" size="12.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="188.0" layoutY="109.0" text="description">
+                  <Label layoutX="358.0" layoutY="176.0" text="description">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="titreR" layoutX="107.0" layoutY="74.0" prefHeight="26.0" prefWidth="236.0" />
-                  <Label fx:id="fileR" layoutX="167.0" layoutY="176.0" onMouseClicked="#choisirFichier" prefHeight="22.0" prefWidth="118.0" text="ajouter un ficher">
+                  <TextField fx:id="titreR" layoutX="285.0" layoutY="136.0" prefHeight="26.0" prefWidth="236.0" />
+                  <Label fx:id="fileR" layoutX="343.0" layoutY="239.0" onMouseClicked="#choisirFichier" prefHeight="22.0" prefWidth="118.0" text="ajouter un ficher">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="211.0" layoutY="42.0" text="titre">
+                  <Label layoutX="382.0" layoutY="100.0" text="titre">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="581.0" layoutY="39.0" nodeOrientation="RIGHT_TO_LEFT" />
+                  <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="683.0" layoutY="118.0" nodeOrientation="RIGHT_TO_LEFT" />
+                  <HBox alignment="CENTER" layoutX="260.0" layoutY="313.0" prefHeight="34.0" prefWidth="298.0">
+                     <children>
+                        <Button fx:id="btnajoutR" mnemonicParsing="false" onAction="#ajouterRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2be475;" text="Ajouter" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btneditR" mnemonicParsing="false" onAction="#modifierRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3790ef;" text="Modifier" textFill="#f5f7f6">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btndeleteR" mnemonicParsing="false" onAction="#supprimerRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #ea5353;" text="Supprimer" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2be475" height="595.0" layoutX="-2.0" layoutY="-7.0" stroke="#00000004" strokeType="INSIDE" width="234.0" />
+                  <TableView fx:id="tableView" layoutX="256.0" layoutY="389.0" prefHeight="178.0" prefWidth="618.0">
+                    <columns>
+                      <TableColumn fx:id="titretR" prefWidth="148.80006408691406" text="titre" />
+                      <TableColumn fx:id="descriptionR" prefWidth="273.5999755859375" text="description" />
+                        <TableColumn fx:id="fichierR" prefWidth="196.0" text="fichier" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="27.0" layoutY="33.0" prefHeight="58.0" prefWidth="175.0" text="SKILLHUB" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="actualiseId" layoutX="867.0" layoutY="14.0" mnemonicParsing="false" onAction="#actualiserInterface" prefHeight="26.0" prefWidth="24.0" textFill="#00000006" />
+                  <Button fx:id="retourId" layoutX="248.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourVersFormation" prefHeight="26.0" prefWidth="22.0" />
                </children>
             </AnchorPane>
-            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="910.0">
-               <children>
-                  <Button fx:id="btnajoutR" mnemonicParsing="false" onAction="#ajouterRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2be475;" text="Ajouter" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
-                  <Button fx:id="btneditR" mnemonicParsing="false" onAction="#modifierRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3790ef;" text="Modifier" textFill="#f5f7f6">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
-                  <Button fx:id="btndeleteR" mnemonicParsing="false" onAction="#supprimerRessource" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #ea5353;" text="Supprimer" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
             <AnchorPane prefHeight="206.0" prefWidth="910.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
-               <children>
-                  <TableView fx:id="tableView" layoutX="79.0" layoutY="14.0" prefHeight="178.0" prefWidth="750.0">
-                    <columns>
-                      <TableColumn fx:id="titretR" prefWidth="180.80003356933594" text="titre" />
-                      <TableColumn fx:id="descriptionR" prefWidth="305.5999755859375" text="description" />
-                        <TableColumn fx:id="fichierR" prefWidth="264.0" text="fichier" />
-                    </columns>
-                  </TableView>
-               </children>
             </AnchorPane>
          </children>
       </VBox>

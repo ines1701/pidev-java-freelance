@@ -5,8 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.scene.control.Label;
@@ -17,6 +21,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.security.auth.callback.Callback;
 import java.io.File;
@@ -51,6 +56,10 @@ public class RessourceController {
 
     @FXML
     private Button btneditR;
+    @FXML
+    private Button actualiseId;
+    @FXML
+    private Button retourId;
 
     private String selectedFilePath;
     private Ressource ressourceSelectionnee;
@@ -436,6 +445,36 @@ public class RessourceController {
         }
     }
 
+    @FXML
+    void actualiserInterface(ActionEvent event) {
+        afficherRessourcesPourFormation(formationId);
+    }
+
+    @FXML
+    void retourVersFormation(ActionEvent event) {
+        try {
+            // Charger la vue Formation.fxml
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("/Fxml/Formation.fxml"));
+            Scene scene =new Scene(loader.load());
+
+            // Accéder au contrôleur de la vue Formation.fxml
+            FormationController formationController = loader.getController();
+
+            // Passer des données éventuelles au contrôleur de la vue Formation.fxml
+            // Exemple : formationController.setSomeData(someData);
+
+            // Accéder à la scène principale
+            Stage stage = (Stage) retourId.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();
+            // Afficher la nouvelle scène
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de chargement de la vue Formation.fxml
+        }
+    }
 
 
 }
