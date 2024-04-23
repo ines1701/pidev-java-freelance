@@ -5,15 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,8 +62,6 @@ public class ProjectController {
     @FXML
     private TableView<Project> allProjects;
 
-    @FXML
-    private Button condi;
 
     @FXML
     private Button cancelButton;
@@ -72,6 +72,11 @@ public class ProjectController {
     @FXML
     private Button delete;
     private Project selectedProject;
+    @FXML
+    private ComboBox<String> pBoxPrd;
+
+    @FXML
+    private ComboBox<String> pBoxPortee;
 
     /*@FXML
     void ajouterProjet(ActionEvent event) {
@@ -105,18 +110,18 @@ public class ProjectController {
         }
     }*/
     @FXML
-    void ajouterProjet(ActionEvent event) {
+    void ajouterProjet() {
         try {
             // Get the values from the text fields
             String titre = pTitre.getText();
             String categorie = pCategorie.getText();
-            String periode = pPeriode.getText();
-            String portee = pPortee.getText();
+            String periode = pBoxPrd.getSelectionModel().getSelectedItem();
+            String portee = pBoxPortee.getSelectionModel().getSelectedItem();
             String description = pDescription.getText();
             String budgetText = pBudget.getText();
 
             // Check if any of the fields are empty
-            if (titre.isEmpty() || categorie.isEmpty() || periode.isEmpty() || portee.isEmpty() || description.isEmpty() || budgetText.isEmpty()) {
+            if (titre.isEmpty() || categorie.isEmpty() || pBoxPrd.getSelectionModel().getSelectedItem()== null || portee.isEmpty() || description.isEmpty() || budgetText.isEmpty()) {
                 showErrorAlert("Erreur de saisie", "Tous les champs doivent être remplis.");
                 return;
             }
@@ -132,13 +137,13 @@ public class ProjectController {
                 return;
             }
 
-            if (portee.length() < 5 || !portee.matches("[a-zA-Z]+")) {
-                showErrorAlert("Erreur de saisie", "La portée doit contenir au moins 5 lettres alphabétiques.");
+            if (pBoxPrd.getSelectionModel().getSelectedItem()== null) {
+                showErrorAlert("Erreur de saisie", "Vous devez choisir la période du projet.");
                 return;
             }
 
-            if (periode.length() < 4) {
-                showErrorAlert("Erreur de saisie", "La période doit contenir au moins 4 caractères.");
+            if (pBoxPortee.getSelectionModel().getSelectedItem()== null) {
+                showErrorAlert("Erreur de saisie", "Vous devez choisir la portée du projet.");
                 return;
             }
 
@@ -193,6 +198,8 @@ public class ProjectController {
         });
 
         initializeTableView();
+        ajouterPortee();
+        ajouterPeriode();
     }
 
     @FXML
@@ -235,8 +242,8 @@ public class ProjectController {
                 // Update the values of the selected project based on the text fields
                 selectedProject.setTitre(pTitre.getText());
                 selectedProject.setCategorie(pCategorie.getText());
-                selectedProject.setPeriode(pPeriode.getText());
-                selectedProject.setPortee(pPortee.getText());
+                selectedProject.setPeriode(pBoxPrd.getSelectionModel().getSelectedItem());
+                selectedProject.setPortee(pBoxPortee.getSelectionModel().getSelectedItem());
                 selectedProject.setDescription(pDescription.getText());
                 selectedProject.setBudget(Double.parseDouble(pBudget.getText()));
 
@@ -299,13 +306,13 @@ public class ProjectController {
         if (selectedProject != null) {
             pTitre.setText(selectedProject.getTitre());
             pCategorie.setText(selectedProject.getCategorie());
-            pPeriode.setText(selectedProject.getPeriode());
-            pPortee.setText(selectedProject.getPortee());
+            pBoxPrd.setValue(selectedProject.getPeriode());
+            pBoxPortee.setValue(selectedProject.getPortee());
             pDescription.setText(selectedProject.getDescription());
             pBudget.setText(String.valueOf(selectedProject.getBudget()));
         }
     }
-
+//pBoxPrd.getSelectionModel().getSelectedItem()
 
 
     private void showErrorAlert(String title, String message) {
@@ -315,7 +322,7 @@ public class ProjectController {
         alert.show();
     }
     @FXML
-    void cancelButtonOnAction(ActionEvent event) {
+    void cancelButtonOnAction() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -361,14 +368,16 @@ public class ProjectController {
     }
 */
 
+    @FXML
     private void clearFields() {
         pTitre.clear();
         pCategorie.clear();
-        pPeriode.clear();
-        pPortee.clear();
+        pBoxPrd.setValue(null);
+        pBoxPortee.setValue(null);
         pDescription.clear();
         pBudget.clear();
     }
+
 
     /*/Open the Add Form
     public void Open(ActionEvent event) throws IOException{
@@ -391,4 +400,52 @@ public class ProjectController {
             // Handle any potential exceptions (e.g., file not found)
         }
     }*/
+    private final String[] periodeList = {"1 à 3 mois", "3 à 6 mois", "plus que 6 mois"};
+
+    public void ajouterPeriode() {
+        List<String> listP = new ArrayList<>();
+        Collections.addAll(listP, periodeList);
+
+        ObservableList<String> listDataPrd = FXCollections.observableArrayList(listP);
+        pBoxPrd.setItems(listDataPrd);
+    }
+    private final String[] porteeList = {"Petit", "Moyen", "Large"};
+
+    public void ajouterPortee() {
+        List<String> listPt = new ArrayList<>();
+        Collections.addAll(listPt, porteeList);
+
+        ObservableList<String> listData = FXCollections.observableArrayList(listPt);
+        pBoxPortee.setItems(listData);
+    }
+
+    //POP UP for all condidatures
+    @FXML
+    private void openCondidatures() {
+        if (selectedProject != null) {
+            try {
+                // Load the FXML file for the candidate window
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AllCondidatures.fxml"));
+                Parent root = loader.load();
+
+                // Get the controller of the candidate window
+                CondidaturesParProjet controller = loader.getController();
+
+                // Pass the selected project ID to the candidate controller
+                controller.setSelectedProject(selectedProject);
+
+                // Show the candidate window
+                Stage popupStage = new Stage();
+                popupStage.initModality(Modality.APPLICATION_MODAL);
+                popupStage.setTitle("Les candidatures liées à ce projet!");
+                popupStage.setScene(new Scene(root));
+                popupStage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            showErrorAlert("Erreur", "Veuillez sélectionner un projet.");
+        }
+    }
+
 }

@@ -29,15 +29,15 @@ public class ServiceProject implements CRUD<Project> {
 
     @Override
     public void updateOne(Project project) throws SQLException {
-        String sql = "UPDATE project SET categorie=?, periode=?, portee=?, description=?, budget=?,titre=? WHERE id=?";
+        String sql = "UPDATE project SET titre=?, categorie=?, periode=?,portee=?, description=?, budget=? WHERE id=?";
 
         try (PreparedStatement statement = cnx.prepareStatement(sql)) {
-            statement.setString(1, project.getCategorie());
-            statement.setString(2, project.getPeriode());
-            statement.setString(3, project.getPortee());
-            statement.setString(4, project.getDescription());
-            statement.setDouble(5, project.getBudget());
-            statement.setString(6, project.getTitre());
+            statement.setString(1, project.getTitre());
+            statement.setString(2, project.getCategorie());
+            statement.setString(3, project.getPeriode());
+            statement.setString(4, project.getPortee());
+            statement.setString(5, project.getDescription());
+            statement.setDouble(6, project.getBudget());
             statement.setInt(7,project.getId());// Assuming you want to update based on the title
 
             int rowsUpdated = statement.executeUpdate();

@@ -315,6 +315,7 @@ public class CondidatureController {
     public void refreshTableView() {
         afficherCondidatures();
     }
+
     public void setProject(Project project) {
         this.project = project;
         // Now you can use the selected project in your CondidatureController

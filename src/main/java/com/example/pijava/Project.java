@@ -66,11 +66,11 @@ public class Project {
     public Project() {
     }
 
-    public Project(String titre, String categorie, String portee, String periode, String description, double budget) {
+    public Project(String titre, String categorie, String periode, String portee, String description, double budget) {
         this.titre = titre;
         this.categorie = categorie;
-        this.portee = portee;
         this.periode = periode;
+        this.portee = portee;
         this.description = description;
         this.budget = budget;
     }

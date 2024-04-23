@@ -80,4 +80,30 @@ public class ServiceCondidature implements CRUD<Condidature> {
 
         return condidatureList;
     }
+
+    public List<Condidature> selectByProjectId(int selectedProjectId) throws SQLException {
+        List<Condidature> condidatureList = new ArrayList<>();
+
+        String req = "SELECT * FROM `condidature` WHERE `project_id`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, selectedProjectId);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Condidature condidature = new Condidature();
+            condidature.setName(rs.getString("name"));
+            condidature.setPrenom(rs.getString("prenom"));
+            condidature.setEmail(rs.getString("email"));
+            condidature.setNum_tel(rs.getInt("num_tel"));
+            condidature.setLettredemotivation(rs.getString("lettremotivation"));
+            condidature.setCv(rs.getString("cv"));
+
+            condidatureList.add(condidature);
+        }
+
+        return condidatureList;
+    }
+
+
 }
