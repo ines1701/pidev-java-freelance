@@ -46,6 +46,8 @@ public class FormationController {
     @FXML
     private TextField updated;
     @FXML
+    private Button partFront;
+    @FXML
     private Button ouvrirId;
     // Variable pour stocker la formation sélectionnée
     private Formation formationSelectionnee;
@@ -72,7 +74,7 @@ public class FormationController {
         try {
             // Vérification des longueurs minimales
             if (titref.getText().length() < 4) {
-                throw new IllegalArgumentException("Le titre doit contenir au moins 4 caractères.");
+                throw new Exception("Le titre doit contenir au moins 4 caractères.");
             }
             if (categorief.getText().length() < 5) {
                 throw new IllegalArgumentException("La catégorie doit contenir au moins 5 caractères.");
@@ -118,7 +120,7 @@ public class FormationController {
             showErrorAlert("Erreur de saisie", e.getMessage());
         } catch (NumberFormatException e) {
             showErrorAlert("Erreur de saisie", e.getMessage());
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             showErrorAlert("Erreur de saisie", e.getMessage());
         }
     }
@@ -363,6 +365,31 @@ public class FormationController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    @FXML
+    void onPartFrontClicked(ActionEvent event) {
+        try {
+            // Charger la vue Formation.fxml
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("/Fxml/FormationFront.fxml"));
+            Scene scene =new Scene(loader.load());
+
+            // Accéder au contrôleur de la vue Formation.fxml
+            FormationFrontController formationFrontController = loader.getController();
+
+            // Passer des données éventuelles au contrôleur de la vue Formation.fxml
+            // Exemple : formationController.setSomeData(someData);
+
+            // Accéder à la scène principale
+            Stage stage = (Stage) partFront.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();
+            // Afficher la nouvelle scène
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de chargement de la vue Formation.fxml
+        }
     }
 
 

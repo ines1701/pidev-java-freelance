@@ -1,4 +1,6 @@
 package com.example.pidev3;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 
 import java.sql.PreparedStatement;
@@ -169,6 +171,44 @@ public class ServiceFormation implements CRUD<Formation> {
             int count = resultSet.getInt(1);
             return count > 0;
         }
+    }
+
+    public ObservableList<String> getAllCategories() {
+        ObservableList<String> categories = FXCollections.observableArrayList();
+        String query = "SELECT DISTINCT categorie FROM formation";
+        try (Connection connection = DBConnection.getInstance().getCnx();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                categories.add(resultSet.getString("categorie"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+    public List<Formation> getFormationsByCategorie(String categorie) {
+        List<Formation> formations = new ArrayList<>();
+        String query = "SELECT * FROM formation WHERE categorie = ?";
+        try (Connection connection = DBConnection.getInstance().getCnx();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, categorie);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Formation formation = new Formation(
+                            resultSet.getInt("id"),
+                            resultSet.getString("titre"),
+                            resultSet.getString("categorie"),
+                            resultSet.getString("tuteur"),
+                            resultSet.getString("updated")
+                    );
+                    formations.add(formation);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return formations;
     }
 }
 
