@@ -73,7 +73,7 @@ public class ServiceCondidature implements CRUD<Condidature> {
             condidature.setLettredemotivation(rs.getString("lettremotivation"));
             condidature.setCv(rs.getString("cv"));
             condidature.setStatus(rs.getString("status"));
-            condidature.setId(rs.getInt("id"));
+            //condidature.setId(rs.getInt("id"));
 
             condidatureList.add(condidature);
         }

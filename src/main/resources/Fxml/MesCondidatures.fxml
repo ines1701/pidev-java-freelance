@@ -39,16 +39,16 @@
             </Button>
          </children>
       </VBox>
-      <TableView fx:id="condidaturesTable" layoutX="218.0" layoutY="101.0" prefHeight="208.0" prefWidth="800.0">
+      <TableView fx:id="condidaturesTable" layoutX="218.0" layoutY="101.0" prefHeight="208.0" prefWidth="697.0">
         <columns>
           <TableColumn fx:id="nomCon" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="prenomCon" prefWidth="101.60003662109375" text="Prénom" />
-            <TableColumn fx:id="emailCon" text="Email" />
-            <TableColumn fx:id="numCon" prefWidth="129.5999755859375" text="Num Tél" />
-            <TableColumn fx:id="lettreCon" prefWidth="208.0" text="Lettre de Motivation" />
-            <TableColumn fx:id="cvCon" prefWidth="88.79998779296875" text="CV" />
-            <TableColumn fx:id="statutsCon" minWidth="0.0" prefWidth="60.0" text="Statuts" />
-            <TableColumn fx:id="idCon" minWidth="0.0" prefWidth="59.199951171875" text="id" />
+            <TableColumn fx:id="emailCon" prefWidth="124.79998779296875" text="Email" />
+            <TableColumn fx:id="numCon" prefWidth="84.79998779296875" text="Num Tél" />
+            <TableColumn fx:id="lettreCon" prefWidth="136.0" text="Lettre de Motivation" />
+            <TableColumn fx:id="cvCon" prefWidth="87.19989013671875" text="CV" />
+            <TableColumn fx:id="statutsCon" minWidth="0.0" prefWidth="91.2000732421875" text="Statuts" />
+            <TableColumn prefWidth="75.0" text="Column X" />
         </columns>
       </TableView>
       <Text fill="#5fcf80" layoutX="375.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Condidatures">

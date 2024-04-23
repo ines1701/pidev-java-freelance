@@ -21,12 +21,11 @@
                         <TableColumn fx:id="titreFA" prefWidth="89.60005187988281" text="Titre"><cellValueFactory>
                             <PropertyValueFactory property="titre" />
                         </cellValueFactory> </TableColumn>
-                        <TableColumn fx:id="categorieFA" text="Catégorie" />
-                        <TableColumn fx:id="periodeFA" prefWidth="93.5999755859375" text="Portée" />
-                        <TableColumn fx:id="porteeFA" prefWidth="103.20001220703125" text="Période" />
-                        <TableColumn fx:id="descriptionFA" prefWidth="185.5999755859375" text="Description" />
-                        <TableColumn fx:id="budgetFA" minWidth="0.0" prefWidth="124.0001220703125" text="Budget" />
-                  <TableColumn fx:id="idFA" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="categorieFA" prefWidth="106.4000244140625" text="Catégorie" />
+                        <TableColumn fx:id="periodeFA" prefWidth="97.5999755859375" text="Portée" />
+                        <TableColumn fx:id="porteeFA" prefWidth="114.39996337890625" text="Période" />
+                        <TableColumn fx:id="descriptionFA" prefWidth="236.00006103515625" text="Description" />
+                        <TableColumn fx:id="budgetFA" minWidth="0.0" prefWidth="114.4000244140625" text="Budget" />
                     </columns>
                 </TableView>
             <Text fill="#5fcf80" layoutX="468.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Projects">

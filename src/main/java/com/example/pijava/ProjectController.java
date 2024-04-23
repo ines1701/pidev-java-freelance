@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ProjectController {
 
@@ -261,23 +262,37 @@ public class ProjectController {
     @FXML
     void supprimerProjet(ActionEvent event) {
         if (selectedProject != null) {
-            try {
-                // Delete the selected project from the database
-                ServiceProject sp = new ServiceProject();
-                sp.deleteOne(selectedProject);
+            // Afficher une boîte de dialogue de confirmation
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText("Êtes-vous sûr de vouloir supprimer ce projet ?");
+            alert.setContentText("Cette action est irréversible.");
 
-                // Remove the project from the TableView
-                allProjects.getItems().remove(selectedProject);
+            ButtonType buttonTypeOui = new ButtonType("Suuprimer", ButtonBar.ButtonData.OK_DONE);
+            ButtonType buttonTypeNon = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeOui, buttonTypeNon);
 
-                // Clear the fields (optional)
-                clearFields();
-            } catch (SQLException e) {
-                showErrorAlert("Erreur lors de la suppression", e.getMessage());
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == buttonTypeOui) {
+                // Si l'utilisateur a cliqué sur "Oui", supprimer le projet
+                try {
+                    ServiceProject sp = new ServiceProject();
+                    sp.deleteOne(selectedProject);
+
+                    // Remove the project from the TableView
+                    allProjects.getItems().remove(selectedProject);
+
+                    // Clear the fields (optional)
+                    clearFields();
+                } catch (SQLException e) {
+                    showErrorAlert("Erreur lors de la suppression", e.getMessage());
+                }
             }
         } else {
             showErrorAlert("Aucun projet sélectionné", "Veuillez sélectionner un projet à supprimer.");
         }
     }
+
 
     private void afficherProjetSelectionne() {
         // Set the text fields with the selected project's data

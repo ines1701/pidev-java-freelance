@@ -63,7 +63,7 @@ public class ProjectTableController {
     @FXML
     private void initializeTableViewForAll() {
         try {
-            idFA.setCellValueFactory(new PropertyValueFactory<>("id"));
+            //idFA.setCellValueFactory(new PropertyValueFactory<>("id"));
             titreFA.setCellValueFactory(new PropertyValueFactory<>("titre"));
             categorieFA.setCellValueFactory(new PropertyValueFactory<>("categorie"));
             periodeFA.setCellValueFactory(new PropertyValueFactory<>("periode"));

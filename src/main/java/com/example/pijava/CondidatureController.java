@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class CondidatureController {
 
@@ -152,7 +153,7 @@ public class CondidatureController {
             lettreCon.setCellValueFactory(new PropertyValueFactory<>("lettredemotivation"));
             cvCon.setCellValueFactory(new PropertyValueFactory<>("cv"));
             statutsCon.setCellValueFactory(new PropertyValueFactory<>("status"));
-            idCon.setCellValueFactory(new PropertyValueFactory<>("id"));
+            //idCon.setCellValueFactory(new PropertyValueFactory<>("id"));
 
             afficherCondidatures(); // Call the method to populate the TableView with projects
         } catch (Exception e) {
@@ -264,21 +265,33 @@ public class CondidatureController {
     @FXML
     void supprimerCondidature(ActionEvent event) {
         if (selectedCondidature != null) {
-            try {
-                // Delete the selected project from the database
-                ServiceCondidature sc = new ServiceCondidature();
-                sc.deleteOne(selectedCondidature);
+            // Afficher une boîte de dialogue de confirmation
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette candidature ?");
+            //alert.setContentText("Cette action est irréversible.");
 
-                // Remove the project from the TableView
-                condidaturesTable.getItems().remove(selectedCondidature);
+            ButtonType buttonTypeOui = new ButtonType("Supprimer", ButtonBar.ButtonData.OK_DONE);
+            ButtonType buttonTypeNon = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeOui, buttonTypeNon);
 
-            } catch (SQLException e) {
-                showErrorAlert("Erreur lors de la suppression", e.getMessage());
+            // Attendre la réponse de l'utilisateur
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == buttonTypeOui) {
+                try {
+                    ServiceCondidature sc = new ServiceCondidature();
+                    sc.deleteOne(selectedCondidature);
+
+                    condidaturesTable.getItems().remove(selectedCondidature);
+                } catch (SQLException e) {
+                    showErrorAlert("Erreur lors de la suppression", e.getMessage());
+                }
             }
         } else {
-            showErrorAlert("Aucune condidature sélectionnée ", "Veuillez sélectionner une condidature à supprimer.");
+            showErrorAlert("Aucune candidature sélectionnée", "Veuillez sélectionner une candidature à supprimer.");
         }
     }
+
 
 
     private void showErrorAlert(String title, String message) {
