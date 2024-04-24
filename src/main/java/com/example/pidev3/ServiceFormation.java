@@ -25,26 +25,28 @@ public class ServiceFormation implements CRUD<Formation> {
     }*/
 
     public void insertOne(Formation formation) throws SQLException {
-        String req = "INSERT INTO `formation`(`titre`, `categorie`, `tuteur`, `updated`) VALUES (?,?,?,?)";
+        String req = "INSERT INTO `formation`(`titre`, `categorie`, `tuteur`, `updated`,`favoris`) VALUES (?,?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setString(1, formation.getTitre());
         ps.setString(2, formation.getCategorie());
         ps.setString(3, formation.getTuteur());
         ps.setString(4, formation.getUpdated());
+        ps.setBoolean(5, formation.isFavoris());
         ps.executeUpdate();
     }
 
     @Override
     public void updateOne(Formation formation) throws SQLException {
-        String req = "UPDATE `formation` SET `titre`=?, `categorie`=?, `tuteur`=?, `updated`=? WHERE `id`=?";
+        String req = "UPDATE `formation` SET `titre`=?, `categorie`=?, `tuteur`=?, `updated`=?  WHERE `id`=?";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setString(1, formation.getTitre());
         ps.setString(2, formation.getCategorie());
         ps.setString(3, formation.getTuteur());
         ps.setString(4, formation.getUpdated());
-        ps.setInt(5, formation.getId()); // Utilisation de l'ID pour identifier la formation à mettre à jour
+        ps.setInt(5, formation.getId());
+        //ps.setBoolean(6, formation.isFavoris());// Utilisation de l'ID pour identifier la formation à mettre à jour
 
         ps.executeUpdate();
     }
@@ -210,6 +212,15 @@ public class ServiceFormation implements CRUD<Formation> {
         }
         return formations;
     }
+    public void updateFavoris(int formationId, boolean nouveauStatut) throws SQLException {
+        String sql = "UPDATE formation SET favoris = ? WHERE id = ?";
+        try (PreparedStatement prepare = cnx.prepareStatement(sql)) {
+            prepare.setBoolean(1, nouveauStatut);
+            prepare.setInt(2, formationId);
+            prepare.executeUpdate();
+        }
+    }
+
 }
 
 

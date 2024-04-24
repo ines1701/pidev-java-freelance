@@ -110,7 +110,7 @@ public class FormationController {
             }
 
 
-            Formation p = new Formation(titref.getText(), categorief.getText(), tuteur.getText(), updated.getText());
+            Formation p = new Formation(titref.getText(), categorief.getText(), tuteur.getText(), updated.getText(),false);
             ServiceFormation sp = new ServiceFormation();
             sp.insertOne(p);
             afficherFormations();

@@ -5,10 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -23,6 +26,8 @@ public class FormationFrontController {
 
     @FXML
     private GridPane menuGrid;
+    @FXML
+    private Button consultFavoris;
 
     @FXML
     private ScrollPane menuScroll;
@@ -195,6 +200,31 @@ public class FormationFrontController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    @FXML
+    void ConsulterFavoris(ActionEvent event) {
+        try {
+            // Charger la vue Formation.fxml
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("/Fxml/Favoris.fxml"));
+            Scene scene =new Scene(loader.load());
+
+            // Accéder au contrôleur de la vue Formation.fxml
+            FavorisController favorisController = loader.getController();
+
+            // Passer des données éventuelles au contrôleur de la vue Formation.fxml
+            // Exemple : formationController.setSomeData(someData);
+
+            // Accéder à la scène principale
+            Stage stage = (Stage) consultFavoris.getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();
+            // Afficher la nouvelle scène
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de chargement de la vue Formation.fxml
         }
     }
 

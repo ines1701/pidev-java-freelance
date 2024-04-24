@@ -2,6 +2,33 @@ package com.example.pidev3;
 
 public class Formation { private int id;
     private String titre, categorie,tuteur,updated;
+    private boolean favoris;
+
+    public Formation(int id, String titre, String categorie, String tuteur, String updated, boolean favoris) {
+        this.id = id;
+        this.titre = titre;
+        this.categorie = categorie;
+        this.tuteur = tuteur;
+        this.updated = updated;
+        this.favoris = favoris;
+    }
+
+    public Formation(String titre, String categorie, String tuteur, String updated, boolean favoris) {
+
+        this.titre = titre;
+        this.categorie = categorie;
+        this.tuteur = tuteur;
+        this.updated = updated;
+        this.favoris = favoris;
+    }
+
+    public boolean isFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
+    }
 
     public Formation() {
     }
