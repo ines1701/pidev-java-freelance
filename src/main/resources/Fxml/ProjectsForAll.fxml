@@ -2,12 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -16,7 +19,7 @@
     <children>
         <AnchorPane layoutX="-1.0" prefHeight="533.0" prefWidth="985.0">
             <children>
-                <TableView fx:id="projectsForAll" fixedCellSize="0.0" layoutX="226.0" layoutY="141.0" prefHeight="330.0" prefWidth="758.0">
+                <TableView fx:id="projectsForAll" fixedCellSize="0.0" layoutX="226.0" layoutY="141.0" prefHeight="133.0" prefWidth="758.0">
                     <columns>
                         <TableColumn fx:id="titreFA" prefWidth="89.60005187988281" text="Titre"><cellValueFactory>
                             <PropertyValueFactory property="titre" />
@@ -34,6 +37,19 @@
                </font>
             </Text>
             <Button fx:id="condi" layoutX="485.0" layoutY="100.0" mnemonicParsing="false" onAction="#openCondidature" style="-fx-background-color: #5fcf80;" text="Postuler votre condidature!" textFill="WHITE" />
+            <AnchorPane layoutX="226.0" layoutY="294.0" prefHeight="200.0" prefWidth="741.0">
+               <children>
+                  <ScrollPane layoutX="-1.0" prefHeight="200.0" prefWidth="742.0">
+                     <content>
+                        <GridPane fx:id="menuGrid" prefHeight="94.0" prefWidth="100.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
             </children>
         </AnchorPane>
         <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="534.0" prefWidth="214.0" style="-fx-background-color: #5fcf80;">

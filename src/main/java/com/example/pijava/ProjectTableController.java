@@ -6,15 +6,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -49,6 +51,14 @@ public class ProjectTableController {
     @FXML
     private TableColumn<Project, String> titreFA;
     private Project selectedProject;
+    @FXML
+    private GridPane menuGrid;
+
+    @FXML
+    private ScrollPane menuScroll;
+    private ServiceProject serviceProject;
+    private Connection cnx;
+    private ObservableList<Project> cardListProject = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -59,6 +69,7 @@ public class ProjectTableController {
             }
         });
         initializeTableViewForAll();
+        afficheCard();
     }
     @FXML
     private void initializeTableViewForAll() {
@@ -117,6 +128,67 @@ public class ProjectTableController {
             }
         } else {
             showErrorAlert("Erreur", "Veuillez sélectionner un projet pour postuler.");
+        }
+    }
+
+
+    public ProjectTableController(){
+        serviceProject = new ServiceProject();
+        cnx = DBConnection.getInstance().getCnx();
+    }
+    //afficher
+
+    public ObservableList<Project> menuGetData() {
+        String sql = "SELECT * FROM project";
+
+        try{
+            PreparedStatement prepare =cnx.prepareStatement(sql);
+            ResultSet result = prepare.executeQuery();
+            Project p;
+            while (result.next()){
+                p =new Project(
+                        result.getInt("id"),
+                        result.getString("titre"),
+                        result.getString("categorie"),
+                        result.getString("periode"),
+                        result.getString("portee"),
+                        result.getString("description"),
+                        result.getDouble("budget"));
+                cardListProject.add(p);
+
+            }
+        }catch (Exception e){e.printStackTrace();}
+        return cardListProject;
+    }
+    public void afficheCard() {
+        // Récupérer les données de formation
+        ObservableList<Project> projects = menuGetData();
+
+        // Nettoyer le contenu actuel du menuGrid
+        menuGrid.getChildren().clear();
+
+        int row = 0;
+        int column = 1;
+
+        for (Project project : projects) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/CardProject.fxml"));
+                AnchorPane projectCard = loader.load();
+                CardProjectController formCard = loader.getController();
+                formCard.setProject(project);
+
+                // Ajouter la carte de formation à menuGrid
+                menuGrid.add(projectCard, column, row);
+
+                // Incrémenter les indices de colonne et de ligne
+                column++;
+                if (column == 4) {
+                    column = 1;
+                    row++;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
