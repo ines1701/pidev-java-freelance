@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="278.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/21" style=" -fx-border-radius: 10px; -fx-border-color: green;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CardProjectController">
+<AnchorPane prefHeight="278.0" prefWidth="372.0" style=" -fx-border-radius: 10px; -fx-border-color: green;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CardProjectController">
    <children>
-      <Label fx:id="pnCard" layoutX="105.0" layoutY="37.0" text="Project Name" textAlignment="CENTER" textFill="#5fcf80">
+      <Label fx:id="pnCard" layoutX="105.0" layoutY="37.0" prefWidth="266.0" text="Project Name" textFill="#5fcf80">
          <font>
             <Font name="Berlin Sans FB" size="28.0" />
          </font>
@@ -29,6 +29,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="106.0" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #5fcf80;" text="Postuler votre condidature!" textFill="WHITE" />
+      <Button fx:id="postuler" layoutX="105.0" layoutY="219.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" style="-fx-background-color: #5fcf80;" text="Postuler votre condidature!" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </AnchorPane>

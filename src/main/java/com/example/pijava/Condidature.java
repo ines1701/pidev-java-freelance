@@ -108,5 +108,14 @@ public class Condidature {
         this.cv = cv;
         this.project_id = project_id;
     }
+    public Condidature(String name, String prenom, String email, int num_tel, String lettredemotivation, String cv, String status) {
+        this.name = name;
+        this.prenom = prenom;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.lettredemotivation = lettredemotivation;
+        this.cv = cv;
+        this.status = status;
+    }
 
 }

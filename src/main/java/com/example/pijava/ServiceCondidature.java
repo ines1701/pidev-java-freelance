@@ -98,6 +98,7 @@ public class ServiceCondidature implements CRUD<Condidature> {
             condidature.setNum_tel(rs.getInt("num_tel"));
             condidature.setLettredemotivation(rs.getString("lettremotivation"));
             condidature.setCv(rs.getString("cv"));
+            condidature.setStatus(rs.getString("status"));
 
             condidatureList.add(condidature);
         }
@@ -106,4 +107,12 @@ public class ServiceCondidature implements CRUD<Condidature> {
     }
 
 
+    public void updateCondidatureStatus(String email, String newStatus) throws SQLException {
+        String sql = "UPDATE condidature SET status=? WHERE email=?";
+        try (PreparedStatement statement = cnx.prepareStatement(sql)) {
+            statement.setString(1, newStatus);
+            statement.setString(2, email);
+            statement.executeUpdate();
+        }
+    }
 }

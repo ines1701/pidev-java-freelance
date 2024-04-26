@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="411.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CondidaturesParProjet">
+<AnchorPane prefHeight="411.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CondidaturesParProjet">
    <children>
-      <VBox prefHeight="90.0" prefWidth="600.0" style="-fx-background-color: #5fcf80;">
+      <VBox prefHeight="90.0" prefWidth="730.0" style="-fx-background-color: #5fcf80;">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trouvez les condidatures" textAlignment="CENTER" wrappingWidth="645.6206977814436" VBox.vgrow="NEVER">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trouvez les condidatures" textAlignment="CENTER" wrappingWidth="728.8206489533186" VBox.vgrow="NEVER">
                <font>
                   <Font name="Bell MT" size="33.0" />
                </font>
@@ -28,7 +28,7 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <TableView fx:id="condidatureP" layoutX="40.0" layoutY="133.0" prefHeight="200.0" prefWidth="565.0">
+      <TableView fx:id="condidatureP" layoutX="40.0" layoutY="133.0" prefHeight="200.0" prefWidth="644.0">
         <columns>
           <TableColumn fx:id="nc" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="pc" prefWidth="75.0" text="Prénom" />
@@ -36,9 +36,10 @@
             <TableColumn fx:id="nuc" prefWidth="91.99993896484375" text="Numéro Tel" />
             <TableColumn fx:id="lc" prefWidth="122.39996337890625" text="Lettre de motivation" />
             <TableColumn fx:id="cc" prefWidth="72.0" text="CV" />
+            <TableColumn fx:id="sc" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
-      <Button fx:id="acceptC" layoutX="478.0" layoutY="348.0" mnemonicParsing="false" text="Accepter" />
-      <Button fx:id="RefuseC" layoutX="550.0" layoutY="348.0" mnemonicParsing="false" text="Refuser" />
+      <Button fx:id="acceptC" layoutX="478.0" layoutY="348.0" mnemonicParsing="false" onAction="#accepterCondidature" style="-fx-background-color: #5fcf80;" text="Accepter" textFill="WHITE" />
+      <Button fx:id="RefuseC" layoutX="550.0" layoutY="348.0" mnemonicParsing="false" onAction="#refuserCondidature" style="-fx-background-color: #cf0b60;" text="Refuser" textFill="WHITE" />
    </children>
 </AnchorPane>

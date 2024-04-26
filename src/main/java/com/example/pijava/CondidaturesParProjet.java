@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -35,15 +37,28 @@ public class CondidaturesParProjet {
 
     @FXML
     private TableColumn<Condidature, String> pc;
+
+    @FXML
+    private TableColumn<Condidature, String> sc;
+
     @FXML
     private TableView<Condidature> condidatureP;
     private int selectedProjectId;
     @FXML
     private Label idProject;
+    private Condidature selectedCondidature;
+    private Connection cnx;
 
     @FXML
     private void initialize() {
+
         initializeTableView();
+        condidatureP.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                selectedCondidature = newSelection;
+            }
+        });
+
     }
     @FXML
     private void initializeTableView() {
@@ -54,6 +69,7 @@ public class CondidaturesParProjet {
             nuc.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
             lc.setCellValueFactory(new PropertyValueFactory<>("lettredemotivation"));
             cc.setCellValueFactory(new PropertyValueFactory<>("cv"));
+            sc.setCellValueFactory(new PropertyValueFactory<>("status"));
 
             afficherCondidatures();// Call the method to populate the TableView with projects
         } catch (Exception e) {
@@ -105,5 +121,55 @@ public class CondidaturesParProjet {
         }
     }
 
+    @FXML
+    private void accepterCondidature() {
+        if (selectedCondidature != null) {
+            System.out.println("Selected Condidature Status: " + selectedCondidature.getStatus()); // Debug statement
+            if (selectedCondidature.getStatus().equals("Acceptée")) {
+                // Show alert if the status is already "Accepté"
+                showAlert("La condidature a été déjà acceptée!");
+            } else {
+                try {
+                    ServiceCondidature sc = new ServiceCondidature();
+                    sc.updateCondidatureStatus(selectedCondidature.getEmail(), "Acceptée");
+                    //afficherCondidatures(); // Refresh the TableView after updating
+                    // Show success message
+                    showAlert("Condidature est acceptée!");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    showErrorAlert("Erreur lors de l'acceptation de la condidature", e.getMessage());
+                }
+            }
+        } else {
+            showErrorAlert("Aucune condidature sélectionnée", "Veuillez sélectionner une condidature à accepter.");
+        }
+    }
+
+
+    @FXML
+    private void refuserCondidature() {
+        if (selectedCondidature != null) {
+            try {
+                ServiceCondidature sc = new ServiceCondidature();
+                sc.deleteOne(selectedCondidature); // Pass the selected condidature object
+                //afficherCondidatures(); // Refresh the TableView after deleting
+                // dialog message
+                showAlert("La condidature est refusé!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showErrorAlert("Erreur lors du refus de la condidature", e.getMessage());
+            }
+        } else {
+            showErrorAlert("Aucune condidature sélectionnée", "Veuillez sélectionner une condidature à refuser.");
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }
