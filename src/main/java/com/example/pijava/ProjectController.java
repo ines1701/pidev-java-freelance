@@ -169,6 +169,7 @@ public class ProjectController {
             // If all validation checks pass, create a new Project object and insert it into the database
             Project project = new Project(titre, categorie, periode, portee, description, budget);
             serviceProject.insertOne(project);
+            clearFields();
 
             // Refresh the TableView to display the newly added project
             afficherProjets();
@@ -441,6 +442,7 @@ public class ProjectController {
                 popupStage.setTitle("Les candidatures liées à ce projet!");
                 popupStage.setScene(new Scene(root));
                 popupStage.showAndWait();
+                clearFields();
             } catch (IOException e) {
                 e.printStackTrace();
             }

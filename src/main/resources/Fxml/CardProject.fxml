@@ -29,6 +29,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="postuler" layoutX="105.0" layoutY="219.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" style="-fx-background-color: #5fcf80;" text="Postuler votre condidature!" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="postuler" layoutX="105.0" layoutY="219.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" style="-fx-background-color: #5fcf80;" text="Postuler votre condidature!" textAlignment="CENTER" textFill="WHITE" onAction="#openCondidatureH" />
    </children>
 </AnchorPane>

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class CardProjectController {
 
     @FXML
     private Label prdCard;
+
+    @FXML
+    private Button postuler;
     private Project project;
 
     public void setProject(Project project){
@@ -42,12 +46,13 @@ public class CardProjectController {
         dCard.setText(project.getDescription());
     }
 
-   /* @FXML
-    private void openCondidature(Project project) {
+   @FXML
+    private void openCondidatureH() {
         if (project != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/addCondidature.fxml"));
-                Parent root = loader.load();
+                Parent root;
+                root = loader.load();
 
                 // Accédez au contrôleur de la page AddCondidature
                 CondidatureController condidatureController = loader.getController();
@@ -62,8 +67,7 @@ public class CardProjectController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            showErrorAlert("Erreur", "Le projet sélectionné est invalide.");
+
         }
     }
 
@@ -75,6 +79,7 @@ public class CardProjectController {
     }
     @FXML
     private void initialize() {
-        openCondidature(project);
-    }*/
+        openCondidatureH();
+    }
+
 }

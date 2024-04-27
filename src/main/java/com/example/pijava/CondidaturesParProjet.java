@@ -126,13 +126,14 @@ public class CondidaturesParProjet {
         if (selectedCondidature != null) {
             System.out.println("Selected Condidature Status: " + selectedCondidature.getStatus()); // Debug statement
             if (selectedCondidature.getStatus().equals("Acceptée")) {
-                // Show alert if the status is already "Accepté"
+                // Show alert if the status is already "Acceptée"
                 showAlert("La condidature a été déjà acceptée!");
             } else {
                 try {
+                    selectedCondidature.setStatus("Acceptée");
                     ServiceCondidature sc = new ServiceCondidature();
                     sc.updateCondidatureStatus(selectedCondidature.getEmail(), "Acceptée");
-                    //afficherCondidatures(); // Refresh the TableView after updating
+                    condidatureP.refresh(); // Refresh the TableView after updating
                     // Show success message
                     showAlert("Condidature est acceptée!");
                 } catch (SQLException e) {
@@ -152,7 +153,8 @@ public class CondidaturesParProjet {
             try {
                 ServiceCondidature sc = new ServiceCondidature();
                 sc.deleteOne(selectedCondidature); // Pass the selected condidature object
-                //afficherCondidatures(); // Refresh the TableView after deleting
+                //supprimer de tableView
+                condidatureP.getItems().remove(selectedCondidature);
                 // dialog message
                 showAlert("La condidature est refusé!");
             } catch (SQLException e) {

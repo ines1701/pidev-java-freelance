@@ -29,8 +29,6 @@ public class CondidatureController {
 
     @FXML
     private TextField emailC;
-    @FXML
-    private TextField emailCC;
 
     @FXML
     private Button lettreC;
@@ -231,6 +229,7 @@ public class CondidatureController {
             // Insert the new condidature into the database
             ServiceCondidature serviceCondidature = new ServiceCondidature();
             serviceCondidature.insertOne(condidature);
+            clearFields();
 
             // Show a success message
             showAlert(Alert.AlertType.INFORMATION, "Confirmation", "La candidature a été ajoutée avec succès!");
@@ -325,4 +324,13 @@ public class CondidatureController {
         }
     }
 
+    @FXML
+    private void clearFields() {
+        nomC.clear();
+        prenomC.clear();
+        emailC.clear();
+        numC.clear();
+        lettre.clear();
+        cv.clear();
+    }
 }

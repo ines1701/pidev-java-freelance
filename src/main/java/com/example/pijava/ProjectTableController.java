@@ -62,16 +62,16 @@ public class ProjectTableController {
 
     @FXML
     private void initialize() {
-        // Gestionnaire de clics sur la TableView
+        /*/ Gestionnaire de clics sur la TableView
         projectsForAll.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 selectedProject = newSelection;
             }
         });
-        initializeTableViewForAll();
+        initializeTableViewForAll();*/
         afficheCard();
     }
-    @FXML
+    /*@FXML
     private void initializeTableViewForAll() {
         try {
             //idFA.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -86,7 +86,7 @@ public class ProjectTableController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
     @FXML
     private void afficherProjectsForAll() {
         try {
