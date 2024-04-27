@@ -58,7 +58,7 @@ public class AddTransaction implements Initializable {
             List<Contrat> contrats = contratService.selectAll();
             contratCombo.getItems().addAll(contrats);
 
-            // Display only email in the ComboBox
+            // Display only  in the ComboBox
             contratCombo.setCellFactory(param -> new ListCell<Contrat>() {
                 @Override
                 protected void updateItem(Contrat contrat, boolean empty) {

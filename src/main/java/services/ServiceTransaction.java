@@ -66,15 +66,15 @@ public class ServiceTransaction implements CRUD<Transaction> {
         }
     }
 
-    @Override
+    @Override // Remove @Override annotation
     public List<Transaction> selectAll() throws SQLException {
         List<Transaction> transactionList = new ArrayList<>();
 
-        String req = "SELECT v.id AS id_transaction, v.montant, v.methode_paiement, v.contrat_id, v.date_transaction, u.nom_client, u.description " +
-                "FROM `transaction` AS v " +
-                "JOIN `contrat` AS u ON v.contrat_id = u.id";
+        String req = "SELECT v.id AS id_transaction, v.montant, v.methode_paiement, v.contrat_id, v.date_transaction, u.nom_client, u.description , u.date_contrat " + // Notice the space at the end
+                "FROM `transaction` AS v " + // Ensure there's a space before FROM
+                "JOIN `contrat` AS u ON v.contrat_id = u.id"; // This is fine as it is
 
-        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) {
+        try (Statement st = cnx.createStatement(); ResultSet rs = st.executeQuery(req)) { // Access cnx directly
             while (rs.next()) {
                 Transaction t = new Transaction();
 
@@ -87,7 +87,9 @@ public class ServiceTransaction implements CRUD<Transaction> {
                 contrat.setId(rs.getInt("contrat_id"));
                 contrat.setNom_client(rs.getString("nom_client"));
                 contrat.setDescription(rs.getString("description"));
-
+                // Handling the SQL date to java.util.Date conversion
+                Date date = rs.getDate("date_contrat");
+                contrat.setDateDeContrat(date != null ? new Date(date.getTime()) : null);
                 t.setContrat(contrat);
 
                 transactionList.add(t);
@@ -96,4 +98,5 @@ public class ServiceTransaction implements CRUD<Transaction> {
 
         return transactionList;
     }
+
 }

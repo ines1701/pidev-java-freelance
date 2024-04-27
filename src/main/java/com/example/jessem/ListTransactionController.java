@@ -2,10 +2,13 @@ package com.example.jessem;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +21,7 @@ import services.ServiceTransaction;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -48,13 +52,23 @@ public class ListTransactionController implements Initializable {
 
     @FXML
     private AnchorPane tuteur_AP;
+    @FXML
+    private Pagination pagination;
+    private List<Transaction> allTransaction; // List of all posts
+
+    private ObservableList<Transaction> currentPagePosts; // Posts for the current page
+
+    private static final int ROWS_PER_PAGE = 6; // Number of rows per page
 
     @FXML
     private TableColumn<Transaction, String> dateTransaction; // Ensure this matches the type in FXML, now it's explicitly typed.
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        pagination.setPageFactory(this::createPage);
         try {
+            ServiceTransaction serviceTransaction = new ServiceTransaction();
+            allTransaction = serviceTransaction.selectAll();
             populateTableView();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,21 +79,41 @@ public class ListTransactionController implements Initializable {
         Stage stage = (Stage) cancelButton1.getScene().getWindow();
         stage.close();
     }
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * ROWS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allTransaction.size());
+        currentPagePosts = FXCollections.observableArrayList(allTransaction.subList(fromIndex, toIndex));
+
+        // Populate your table with currentPagePosts here
+        // For example, if you have a TableView called table:
+        transactionTableView.setItems(currentPagePosts);
+
+        return new AnchorPane(); // Return a placeholder node for now
+    }
 
 
     private void populateTableView() throws SQLException {
         ServiceTransaction serviceTransaction = new ServiceTransaction();
         List<Transaction> transactionList = serviceTransaction.selectAll();
+        allTransaction = serviceTransaction.selectAll();
+        transactionTableView.getItems().clear();
+        int pageCount = (int) Math.ceil((double) allTransaction.size() / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+        pagination.setCurrentPageIndex(0);
+        createPage(0);
+
+        System.out.println("Transactions fetched: " + transactionList.size()); // Debug print
 
         transactionTableView.getItems().clear();
 
         methodeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMethode_paiement()));
-        descriptionCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getContrat().getDescription()));
+        descriptionCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                cellData.getValue().getContrat() != null ? cellData.getValue().getContrat().getDescription() : "No Description"));
         montantCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getMontant()).asObject());
-        // Updated to handle date conversion to String
         dateTransaction.setCellValueFactory(cellData -> {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            return new SimpleStringProperty(dateFormat.format(cellData.getValue().getDate_transaction()));
+            Date date = cellData.getValue().getDate_transaction();
+            String formattedDate = (date != null) ? new SimpleDateFormat("yyyy-MM-dd").format(date) : "No Date";
+            return new SimpleStringProperty(formattedDate);
         });
 
         transactionTableView.getItems().addAll(transactionList);
