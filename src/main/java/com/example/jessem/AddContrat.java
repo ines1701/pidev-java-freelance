@@ -18,6 +18,9 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 public class AddContrat implements Initializable {
 
@@ -48,14 +51,21 @@ public class AddContrat implements Initializable {
         this.listContratController = listContratController;
     }
 
+    public static final String ACCOUNT_SID = "AC433fe8fab4c198dcddfd6eb075941f90";
+    public static final String AUTH_TOKEN = "b5f31261e603e2ad098dbf7f208dccbc";
+
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Image brandingImage = new Image(getClass().getResource("/images/logo.png").toString());
-            brandingImageView.setImage(brandingImage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Image brandingImage = new Image(getClass().getResource("/images/logo.png").toString());
+//            brandingImageView.setImage(brandingImage);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
@@ -89,6 +99,9 @@ public class AddContrat implements Initializable {
             ServiceContrat st = new ServiceContrat();
             st.insertOne(contrat);
             System.out.println("Contrat added successfully.");
+            String recipientPhoneNumber = "+21652724070";
+            String messageBody = "hey admin,a new contrat has been created";
+            sendSMS(recipientPhoneNumber, messageBody);
 
             if (listContratController != null) {
                 listContratController.refreshList();
@@ -101,5 +114,22 @@ public class AddContrat implements Initializable {
             e.printStackTrace();
             System.err.println("Failed to add contrat: " + e.getMessage());
         }
+    }
+
+    public static void sendSMS(String recipientPhoneNumber, String messageBody) {
+        String twilioPhoneNumber = "++18322205712";
+
+        Message message = Message.creator(
+                        new PhoneNumber(recipientPhoneNumber),
+                        new PhoneNumber(twilioPhoneNumber),
+                        messageBody)
+                .create();
+
+        System.out.println("SMS sent successfully. SID: " + message.getSid());
+    }
+
+    @FXML
+    private void sendSMS(ActionEvent event) {
+
     }
 }

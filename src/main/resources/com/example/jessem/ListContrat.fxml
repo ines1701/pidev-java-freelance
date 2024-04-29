@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1019.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jessem.ListContratController">
     <children>
-        <AnchorPane fx:id="tuteur_AP" layoutX="246.0" prefHeight="600.0" prefWidth="777.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="-3.6000000000000227" AnchorPane.topAnchor="0.0">
+        <AnchorPane fx:id="tuteur_AP" layoutX="254.0" prefHeight="600.0" prefWidth="777.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="0.0">
             <styleClass>
                 <String fx:value="white-bg" />
                 <String fx:value="radius" />
@@ -43,6 +43,7 @@
                 </Text>
             <Button fx:id="cancelButton" layoutX="364.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
             <HBox prefHeight="75.0" prefWidth="778.0" style="-fx-background-color: #1ED760;" />
+            <Button fx:id="pdfbut" layoutX="148.0" layoutY="82.0" mnemonicParsing="false"  text="pdf" />
             </children>
         </AnchorPane>
         <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="261.0" style="-fx-background-color: #1ED760;">

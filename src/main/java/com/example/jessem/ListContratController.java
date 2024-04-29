@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import static com.example.jessem.ListContratController.InputValidation.showAlert;
+
 public class ListContratController implements Initializable {
 
     @FXML
@@ -45,6 +47,8 @@ public class ListContratController implements Initializable {
 
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button pdfbut;
 
     @FXML
     private TableColumn<Contrat, Integer> montantCol;
@@ -116,6 +120,28 @@ public class ListContratController implements Initializable {
             }
         });
     }
+//    @FXML
+//    void printLogPdf(ActionEvent event) {
+//        try {
+//            Contrat selectedLogement = contratTableView.getSelectionModel().getSelectedItem();
+//            if (selectedLogement == null) {
+//                showAlert("No logement Selected", "Please select a logement to print.");
+//                return;
+//            }
+//// Appeler la méthode generatePdf de la classe pdfgenerator pour générer le PDF avec les détails du logement sélectionné
+//            com.example.jessem.PDFGenerator.generatePdf(selectedLogement.getNom_client(), selectedLogement.getDescription(),selectedLogement.getMontant());
+//
+//
+//            showAlert("PDF Created", "Logement details printed to PDF successfully.");
+//
+//
+//
+//        } catch (Exception e) {
+//            showAlert("Error", "An error occurred while printing the logement to PDF.");
+//            e.printStackTrace();
+//        }
+//    }
+
 
     private void navigateToUpdateContrat(Contrat contrat) {
         try {
@@ -256,7 +282,7 @@ public class ListContratController implements Initializable {
                 populateTableView(); // Call method to repopulate TableView
             } catch (SQLException e) {
                 e.printStackTrace();
-                InputValidation.showAlert("Error", "Failed to populate table view: " + e.getMessage());
+                showAlert("Error", "Failed to populate table view: " + e.getMessage());
             }
         }
     }
@@ -274,7 +300,7 @@ public class ListContratController implements Initializable {
                     populateTableView(); // Call method to repopulate TableView
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    InputValidation.showAlert("Error", "Failed to populate table view: " + e.getMessage());
+                    showAlert("Error", "Failed to populate table view: " + e.getMessage());
                 }
             } else {
                 // Filter the list of contracts based on the search criteria
