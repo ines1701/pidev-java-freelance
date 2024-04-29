@@ -1,5 +1,6 @@
 package com.example.jessem;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import org.controlsfx.control.Notifications;
 
 public class AddTransaction implements Initializable {
 
@@ -90,12 +92,12 @@ public class AddTransaction implements Initializable {
             e.printStackTrace();
         }
 
-        try {
-            Image brandingImage = new Image(getClass().getResource("/images/logo.png").toString());
-            brandingImageView.setImage(brandingImage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Image brandingImage = new Image(getClass().getResource("/images/logo.png").toString());
+//            brandingImageView.setImage(brandingImage);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -123,6 +125,7 @@ public class AddTransaction implements Initializable {
             ServiceTransaction transactionService = new ServiceTransaction();
             transactionService.insertOne(transaction);
             System.out.println("Transaction added successfully.");
+            showNotification("Success", "Post added successfully!");
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
@@ -132,6 +135,13 @@ public class AddTransaction implements Initializable {
             e.printStackTrace();
             System.err.println("Failed to add transaction: " + e.getMessage());
         }
+    }
+    private void showNotification(String title, String content) {
+        Notifications notification =Notifications.create()
+                .title(title)
+                .text(content);
+
+        Platform.runLater(() -> notification.showInformation());
     }
 
 

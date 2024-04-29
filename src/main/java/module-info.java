@@ -7,6 +7,7 @@ module com.example.jessem {
     requires com.google.zxing;
     requires itextpdf;
     requires twilio;
+    requires org.controlsfx.controls;
 
 
     opens com.example.jessem to javafx.fxml;
