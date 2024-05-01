@@ -163,7 +163,27 @@ public class ListContratController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void printLogPdf(ActionEvent event) {
+        try {
+            Contrat selectedLogement = contratTableView.getSelectionModel().getSelectedItem();
+            if (selectedLogement == null) {
+                showAlert("No contrat Selected", "Please select a contrat to print.");
+                return;
+            }
+// Appeler la méthode generatePdf de la classe pdfgenerator pour générer le PDF avec les détails du logement sélectionné
+            pdfgenerator.generatePdf(selectedLogement.getNom_client(),selectedLogement.getDescription(),selectedLogement.getMontant());
 
+
+            showAlert("PDF Created", "Contrat details printed to PDF successfully.");
+
+
+
+        } catch (Exception e) {
+            showAlert("Error", "An error occurred while printing the logement to PDF.");
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void deleteOne(ActionEvent event) {
         // Get the selected contrat from the table view
