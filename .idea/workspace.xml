@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee2ba3da-d55a-4149-99ca-cde2633784d2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jessem/AddTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jessem/AddTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jessem/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jessem/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/jessem/ListContrat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/jessem/ListContrat.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +102,7 @@
       <workItem from="1714221363567" duration="663000" />
       <workItem from="1714332540182" duration="12945000" />
       <workItem from="1714394468178" duration="6130000" />
+      <workItem from="1714572853309" duration="1701000" />
     </task>
     <servers />
   </component>

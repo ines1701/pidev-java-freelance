@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 public class App extends Application {
     @Override
     public  void start(Stage primaryStage) throws  Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ListTransaction.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ListContrat.fxml"));
        // primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 1000,600));
         primaryStage.show();

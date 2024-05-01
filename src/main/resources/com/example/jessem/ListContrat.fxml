@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -31,9 +33,9 @@
                         <TableColumn fx:id="dateDeContratCol" prefWidth="150.0" text="Date de Contrat" /> <!-- New column for contract date -->
                     </columns>
                 </TableView>
-                <TextField fx:id="searchField" layoutX="523.0" layoutY="130.0" />
+                <TextField fx:id="searchField" layoutX="487.0" layoutY="130.0" prefHeight="25.0" prefWidth="185.0" />
                 <Button layoutX="685.0" layoutY="129.0" mnemonicParsing="false" onAction="#searchUser" text="search" />
-                <Button fx:id="statisticsButton" layoutX="53.0" layoutY="472.0" onAction="#showCategoryStatistics" style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 14px;" text="Statistics" />
+                <Button fx:id="statisticsButton" layoutX="58.0" layoutY="470.0" onAction="#showCategoryStatistics" prefHeight="37.0" prefWidth="84.0" style="-fx-text-fill: white; -fx-font-size: 14px;" />
                 <Button fx:id="supprimerButton" layoutX="614.0" layoutY="471.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
                 <Button fx:id="ajouterButton" layoutX="50.0" layoutY="113.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
                 <Text layoutX="333.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrats">
@@ -42,8 +44,13 @@
                     </font>
                 </Text>
             <Button fx:id="cancelButton" layoutX="364.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
-            <HBox prefHeight="75.0" prefWidth="778.0" style="-fx-background-color: #1ED760;" />
-            <Button fx:id="pdfbut" layoutX="148.0" layoutY="82.0" mnemonicParsing="false"  text="pdf" />
+            <HBox prefHeight="75.0" prefWidth="765.0" style="-fx-background-color: #1ED760;" />
+            <ImageView fitHeight="38.0" fitWidth="65.0" layoutX="171.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="84.0" layoutY="475.0">
+                      <image>
+                  <Image url="@../../../images/download.jpg" />
+                      </image>
+                  </ImageView>
             </children>
         </AnchorPane>
         <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="261.0" style="-fx-background-color: #1ED760;">
