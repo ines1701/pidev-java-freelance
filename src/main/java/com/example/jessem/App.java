@@ -12,7 +12,7 @@ public class App extends Application {
     public  void start(Stage primaryStage) throws  Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));
        // primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 1300,700));
+        primaryStage.setScene(new Scene(root, 1000,600));
         primaryStage.show();
     }
 

@@ -79,10 +79,19 @@
                                               <Font name="System Bold" size="18.0" />
                                           </font>
                                       </Button>
-                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #E96151;" styleClass="add-btn" text="Supprimer" textFill="WHITE">
+                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="87.0" style="-fx-background-color: #D3D3D3;" styleClass="add-btn" textFill="WHITE">
+
                                           <font>
                                               <Font name="System Bold" size="18.0" />
                                           </font>
+                                          <graphic>
+                                              <ImageView fitHeight="36.0" fitWidth="71.0">
+                                                  <image>
+                                                      <Image url="@../../../images/delete.png" />
+                                                  </image>
+                                              </ImageView>
+                                          </graphic>
+
                                       </Button>
                                     </children>
                                 </VBox>
