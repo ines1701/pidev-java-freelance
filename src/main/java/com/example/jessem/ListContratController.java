@@ -1,6 +1,5 @@
 package com.example.jessem;
 
-import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -12,24 +11,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Contrat;
 import services.ServiceContrat;
-import utils.InputValidation;
+import utils.pdfgenerator;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
-import static com.example.jessem.ListContratController.InputValidation.showAlert;
 
 public class ListContratController implements Initializable {
 
@@ -166,23 +166,34 @@ public class ListContratController implements Initializable {
     @FXML
     void printLogPdf(ActionEvent event) {
         try {
-            Contrat selectedLogement = contratTableView.getSelectionModel().getSelectedItem();
-            if (selectedLogement == null) {
-                showAlert("No contrat Selected", "Please select a contrat to print.");
+            Contrat selectedContrat = contratTableView.getSelectionModel().getSelectedItem();
+            if (selectedContrat == null) {
+                showAlert("No contrat Selected", "Please select a contrat to print.", Alert.AlertType.INFORMATION);
                 return;
             }
 // Appeler la méthode generatePdf de la classe pdfgenerator pour générer le PDF avec les détails du logement sélectionné
-            pdfgenerator.generatePdf(selectedLogement.getNom_client(),selectedLogement.getDescription(),selectedLogement.getMontant());
+            pdfgenerator.generatePdf(selectedContrat.getNom_client(),selectedContrat.getDescription(),selectedContrat.getMontant());
 
 
-            showAlert("PDF Created", "Contrat details printed to PDF successfully.");
+            showAlert("PDF Created", "Contrat details printed to PDF successfully.", Alert.AlertType.INFORMATION);
 
 
 
-        } catch (Exception e) {
-            showAlert("Error", "An error occurred while printing the logement to PDF.");
+            // Open the PDF file
+            File file = new File("C:\\Users\\user\\pidev-java-freelance\\Contrat.pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
     @FXML
     private void deleteOne(ActionEvent event) {
@@ -302,7 +313,7 @@ public class ListContratController implements Initializable {
                 populateTableView(); // Call method to repopulate TableView
             } catch (SQLException e) {
                 e.printStackTrace();
-                showAlert("Error", "Failed to populate table view: " + e.getMessage());
+                showAlert("Error", "Failed to populate table view: " + e.getMessage(), Alert.AlertType.INFORMATION);
             }
         }
     }
@@ -320,7 +331,7 @@ public class ListContratController implements Initializable {
                     populateTableView(); // Call method to repopulate TableView
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    showAlert("Error", "Failed to populate table view: " + e.getMessage());
+                    showAlert("Error", "Failed to populate table view: " + e.getMessage(), Alert.AlertType.INFORMATION);
                 }
             } else {
                 // Filter the list of contracts based on the search criteria

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jessem.ChatbotPopupController">
+    <VBox prefHeight="400.0" prefWidth="600.0" spacing="10.0" alignment="CENTER">
+        <TextArea fx:id="chatArea" prefHeight="300.0" prefWidth="500.0" editable="false" wrapText="true"/>
+        <HBox prefWidth="500.0" spacing="10.0" alignment="CENTER">
+            <TextField fx:id="userInputField" prefWidth="400.0" promptText="Type your message here..."/>
+            <Button fx:id="sendButton" text="Send" onAction="#sendMessage"/>
+            <Button text="Quit" onAction="#onClose"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

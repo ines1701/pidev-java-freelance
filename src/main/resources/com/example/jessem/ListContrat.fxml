@@ -18,14 +18,14 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1019.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jessem.ListContratController">
     <children>
-        <AnchorPane fx:id="tuteur_AP" layoutX="254.0" prefHeight="600.0" prefWidth="777.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane fx:id="tuteur_AP" layoutX="237.0" prefHeight="600.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="237.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="0.0">
             <styleClass>
                 <String fx:value="white-bg" />
                 <String fx:value="radius" />
                 <String fx:value="shadow" />
             </styleClass>
             <children>
-                <TableView fx:id="contratTableView" layoutX="39.0" layoutY="159.0" prefHeight="294.0" prefWidth="700.0">
+                <TableView fx:id="contratTableView" layoutX="39.0" layoutY="159.0" prefHeight="294.0" prefWidth="702.0">
                     <columns>
                         <TableColumn fx:id="nomCol" prefWidth="150.0" text="NOM" />
                         <TableColumn fx:id="descriptionCol" prefWidth="250.0" text="Description" />
@@ -33,25 +33,38 @@
                         <TableColumn fx:id="dateDeContratCol" prefWidth="150.0" text="Date de Contrat" /> <!-- New column for contract date -->
                     </columns>
                 </TableView>
-                <TextField fx:id="searchField" layoutX="487.0" layoutY="130.0" prefHeight="25.0" prefWidth="185.0" />
-                <Button layoutX="685.0" layoutY="129.0" mnemonicParsing="false" onAction="#searchUser" text="search" />
-                <Button fx:id="statisticsButton" layoutX="58.0" layoutY="470.0" onAction="#showCategoryStatistics" prefHeight="37.0" prefWidth="84.0" style="-fx-text-fill: white; -fx-font-size: 14px;" />
-                <Button fx:id="supprimerButton" layoutX="614.0" layoutY="471.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
-                <Button fx:id="pDFBUTTON" layoutX="50.0" layoutY="113.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
+                <TextField fx:id="searchField" layoutX="445.0" layoutY="130.0" prefHeight="25.0" prefWidth="228.0" />
+                <Button layoutX="686.0" layoutY="129.0" mnemonicParsing="false" onAction="#searchUser" text="search" />
+                <Button fx:id="statisticsButton" layoutX="39.0" layoutY="112.0" onAction="#showCategoryStatistics" prefHeight="37.0" prefWidth="72.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
+                    <graphic>
+                    <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="84.0" layoutY="475.0">
+                    <image>
+                        <Image url="@../../../images/graph-bar.png" />
+                    </image>
+                    </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="supprimerButton" layoutX="653.0" layoutY="471.0" mnemonicParsing="false" onAction="#deleteOne" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #E96151;" text="Supprimer" textFill="WHITE" />
+                <Button fx:id="ajouterButton" layoutX="60.0" layoutY="470.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="Ajouter" textFill="WHITE" />
+
                 <Text layoutX="333.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrats">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Text>
-            <Button fx:id="cancelButton" layoutX="364.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
-                <Button fx:id="ajouterButton" layoutX="50.0" layoutY="113.0" mnemonicParsing="false" onAction="#printLogPdf" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: #2A914D;" text="PDF" textFill="WHITE" />
-            <HBox prefHeight="75.0" prefWidth="765.0" style="-fx-background-color: #1ED760;" />
+            <Button fx:id="cancelButton" layoutX="397.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
+            <HBox prefHeight="75.0" prefWidth="799.0" style="-fx-background-color: #1ED760;" />
             <ImageView fitHeight="38.0" fitWidth="65.0" layoutX="171.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="84.0" layoutY="475.0">
-                      <image>
-                  <Image url="@../../../images/download.jpg" />
-                      </image>
-                  </ImageView>
+
+            <Button fx:id="pdfbut" layoutX="99.0" layoutY="113.0" mnemonicParsing="false" onAction="#printLogPdf" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
+                <graphic>
+                    <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="84.0" layoutY="475.0">
+                        <image>
+                            <Image url="@../../../images/pdf.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
             </children>
         </AnchorPane>
         <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="261.0" style="-fx-background-color: #1ED760;">

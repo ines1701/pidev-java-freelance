@@ -290,6 +290,24 @@ public class FrontController implements Initializable {
             alert.showAndWait();
         }
     }
+    @FXML
+    void openChatbotPopup(ActionEvent event) {
+        try {
+            // Load the FXML file for the chatbot popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatbotPopup.fxml"));
+            Parent root = loader.load();
 
+            // Create a new stage for the chatbot popup
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Chatbot");
+            stage.setScene(new Scene(root));
+
+            // Show the chatbot popup
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

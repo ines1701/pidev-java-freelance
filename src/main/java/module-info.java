@@ -12,4 +12,6 @@ module com.example.jessem {
 
     opens com.example.jessem to javafx.fxml;
     exports com.example.jessem;
+    exports utils;
+    opens utils to javafx.fxml;
 }
