@@ -71,16 +71,22 @@
                                               <Insets top="20.0" />
                                           </VBox.margin>
                                       </ImageView>
-                                      <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="39.0" prefWidth="147.0" styleClass="add-btn" text="Modifer" textFill="#828282">
+                                      <Button mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="48.0" prefWidth="114.0" styleClass="add-btn" textFill="#8d8888">
                                           <VBox.margin>
                                               <Insets bottom="20.0" top="30.0" />
                                           </VBox.margin>
                                           <font>
                                               <Font name="System Bold" size="18.0" />
                                           </font>
+                                          <graphic>
+                                              <ImageView fitHeight="36.0" fitWidth="71.0">
+                                                  <image>
+                                                      <Image url="@../../../images/edit-button.png" />
+                                                  </image>
+                                              </ImageView>
+                                          </graphic>
                                       </Button>
-                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="87.0" style="-fx-background-color: #D3D3D3;" styleClass="add-btn" textFill="WHITE">
-
+                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="37.0" prefWidth="118.0" style="-fx-background-color: #D3D3D3;" styleClass="add-btn" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="18.0" />
                                           </font>
@@ -91,7 +97,6 @@
                                                   </image>
                                               </ImageView>
                                           </graphic>
-
                                       </Button>
                                     </children>
                                 </VBox>
@@ -121,7 +126,7 @@
                             <children>
                                 <Pane prefHeight="65.0" prefWidth="805.0" HBox.hgrow="ALWAYS">
                            <children>
-                                      <Button layoutX="1.0" layoutY="5.0" mnemonicParsing="false" onAction="#ajouterButtonOnActionTrasaction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
+                                      <Button layoutX="18.0" layoutY="5.0" mnemonicParsing="false" onAction="#ajouterButtonOnActionTrasaction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
                                           <font>
                                               <Font size="22.0" />
                                           </font>
@@ -133,7 +138,7 @@
                                               </ImageView>
                                           </graphic>
                                       </Button>
-                                      <Button layoutX="89.0" layoutY="1.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
+                                      <Button layoutX="131.0" layoutY="1.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
                                           <font>
                                               <Font size="22.0" />
                                           </font>
@@ -148,7 +153,7 @@
                                        </ImageView>
                                    </graphic>
                                </Button>
-                                        <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="114.0" layoutY="15.0">
+                                        <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="139.0" layoutY="15.0">
                                             <image>
                                                 <Image url="@../../../images/contract.png" />
                                             </image>
