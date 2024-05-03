@@ -1,5 +1,6 @@
 package com.example.jessem;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -61,6 +62,7 @@ public class ListContratController implements Initializable {
 
     @FXML
     private AnchorPane tuteur_AP;
+
     @FXML
     private TableColumn<Contrat, String> dateDeContratCol;
 
@@ -75,6 +77,7 @@ public class ListContratController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
 
             populateTableView();

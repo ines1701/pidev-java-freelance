@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Contrat;
 
+import java.io.InputStream;
+
 public class ItemController {
     @FXML
     private Label desriptionLable;
@@ -35,8 +37,14 @@ public class ItemController {
         desriptionLable.setText(contrat.getDescription());
         montantLable.setText(String.valueOf(contrat.getMontant()));
 
-        Image image = new Image(getClass().getResource("/images/Banque-de-France-–-Particuliers-RIB.jpg").toString());
-        img.setImage(image);
+        String imagePath = "/images/" + contrat.getImage();
+        InputStream imageStream = getClass().getResourceAsStream(imagePath);
+        if (imageStream != null) {
+            Image image = new Image(imageStream);
+            img.setImage(image);
+        } else {
+            System.out.println("L'image n'a pas pu être chargée : " + imagePath);
+        }
     }
 
 

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jessem.FrontController">
+<AnchorPane fx:id="mainF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jessem.FrontController">
     <children>
         <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -86,7 +86,7 @@
                                               </ImageView>
                                           </graphic>
                                       </Button>
-                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="37.0" prefWidth="118.0" style="-fx-background-color: #D3D3D3;" styleClass="add-btn" textFill="WHITE">
+                                      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="37.0" prefWidth="118.0" styleClass="add-btn" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="18.0" />
                                           </font>
@@ -117,49 +117,12 @@
                 </VBox>
             </left>
             <center>
-                <VBox prefHeight="724.0" prefWidth="836.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+                <VBox prefHeight="724.0" prefWidth="836.0" BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #FFFFFF;">
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="803.0" spacing="15.0">
                             <VBox.margin>
                                 <Insets left="20.0" right="20.0" />
                             </VBox.margin>
-                            <children>
-                                <Pane prefHeight="65.0" prefWidth="805.0" HBox.hgrow="ALWAYS">
-                           <children>
-                                      <Button layoutX="18.0" layoutY="5.0" mnemonicParsing="false" onAction="#ajouterButtonOnActionTrasaction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
-                                          <font>
-                                              <Font size="22.0" />
-                                          </font>
-                                          <graphic>
-                                              <ImageView fitHeight="36.0" fitWidth="71.0">
-                                                  <image>
-                                                      <Image url="@../../../images/money-transfer.png" />
-                                                  </image>
-                                              </ImageView>
-                                          </graphic>
-                                      </Button>
-                                      <Button layoutX="131.0" layoutY="1.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="63.0" prefWidth="77.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
-                                          <font>
-                                              <Font size="22.0" />
-                                          </font>
-                                      </Button>
-            
-                               <Button fx:id="chatbotButton" layoutX="851.0" layoutY="15.0" onAction="#openChatbotPopup" prefHeight="44.0" prefWidth="95.0">
-                                   <graphic>
-                                       <ImageView fitHeight="36.0" fitWidth="71.0">
-                                           <image>
-                                               <Image url="@../../../images/chatbot.png" />
-                                           </image>
-                                       </ImageView>
-                                   </graphic>
-                               </Button>
-                                        <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="139.0" layoutY="15.0">
-                                            <image>
-                                                <Image url="@../../../images/contract.png" />
-                                            </image>
-                                        </ImageView>
-                           </children></Pane>
-                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="408.0" prefWidth="880.0" VBox.vgrow="ALWAYS">
                             <children>
@@ -197,9 +160,45 @@
                             <HBox.margin>
                                 <Insets left="5.0" right="5.0" />
                             </HBox.margin>
+                     <children>
+                                <Button layoutX="-136.0" layoutY="91.0" mnemonicParsing="false" onAction="#ajouterButtonOnActionTrasaction" prefHeight="51.0" prefWidth="84.0" textFill="WHITE">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                           <graphic>
+                                        <ImageView fitHeight="36.0" fitWidth="71.0">
+                                            <image>
+                                                <Image url="@../../../images/money-transfer.png" />
+                                            </image>
+                                        </ImageView>
+                           </graphic>
+                                </Button>
+                                <Button layoutY="89.0" mnemonicParsing="false" onAction="#ajouterButtonOnAction" prefHeight="51.0" prefWidth="93.0" textFill="WHITE">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Button>
+                                  <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="17.0" layoutY="95.0">
+                                      <image>
+                                          <Image url="@../../../images/contract.png" />
+                                      </image>
+                                  </ImageView>
+                     </children>
                         </Pane>
-                        <Pane prefHeight="74.0" prefWidth="210.0" />
-                        <Pane prefHeight="74.0" prefWidth="275.0" />
+                        <Pane prefHeight="74.0" prefWidth="210.0">
+                     <children>
+            
+                                           <Button fx:id="chatbotButton" layoutX="376.0" layoutY="89.0" onAction="#openChatbotPopup" prefHeight="44.0" prefWidth="95.0" />
+                     </children></Pane>
+                        <Pane prefHeight="74.0" prefWidth="275.0">
+                     <children>
+                           <ImageView fitHeight="36.0" fitWidth="59.0" layoutX="187.0" layoutY="91.0">
+                               <image>
+                                   <Image url="@../../../images/chatbot.png" />
+                               </image>
+                           </ImageView>
+                     </children>
+                  </Pane>
                         <Pane prefHeight="74.0" prefWidth="144.0">
                             <children>
                                 <Label prefHeight="62.0" prefWidth="100.0" text="My Account" textFill="#030303">

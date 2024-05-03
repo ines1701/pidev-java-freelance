@@ -1,5 +1,6 @@
 package com.example.jessem;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Contrat;
 import services.ServiceContrat;
+import com.example.jessem.ToggleSwitch;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +54,8 @@ public class FrontController implements Initializable {
     private ScrollPane scroll;
     @FXML
     private Button cancelButton;
+    @FXML
+    private AnchorPane mainF;
 
     private Contrat selectedContrat;
     private List<Contrat> contratList = new ArrayList<>();
@@ -76,6 +81,28 @@ public class FrontController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        com.example.jessem.ToggleSwitch button = new com.example.jessem.ToggleSwitch();
+        SimpleBooleanProperty isOn = button.switchOnProperty();
+        isOn.addListener((observable, oldValue, newValue) -> {
+            // Get the resource URL for the CSS file
+            URL cssResource = getClass().getResource("/images/newCascadeStyleSheet.css");
+            if (cssResource != null) {
+                String cssPath = cssResource.toExternalForm();
+                if (newValue) {
+                    // Add CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().add(cssPath);
+                } else {
+                    // Remove CSS stylesheet
+                    button.getScene().getRoot().getStylesheets().remove(cssPath);
+                }
+            } else {
+                // Handle the case where the resource is not found
+                System.err.println("CSS file not found.");
+            }
+        });
+        mainF.getChildren().add(button);
+
         try {
             contratList = getData(); // Populate the existing contratList
         } catch (SQLException e) {
@@ -229,6 +256,7 @@ public class FrontController implements Initializable {
 
     @FXML
     void updateButtonClicked(ActionEvent event) {
+
         try {
             if (selectedContrat == null) {
                 // Alert the user to select a vehicle first

@@ -6,14 +6,18 @@ import java.util.Date;
 public class Contrat {
 
         int id;
-        String nom_client, description;
+        String nom_client, description,image;
         int montant;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     private Date date_contrat;
-
-
-
-
-
 
         public void setId(int id) {
             this.id = id;
@@ -53,19 +57,21 @@ public class Contrat {
 
     }
 
-    public Contrat(int id, String nom_client, String description, int montant, Date dateDeContrat) {
+    public Contrat(int id, String nom_client, String description, int montant, Date dateDeContrat,String image) {
         this.id = id;
         this.nom_client = nom_client;
         this.description = description;
         this.montant = montant;
         this.date_contrat= dateDeContrat;
+        this.image = image;
     }
 
-    public Contrat(String nom_client, String description, int montant, Date dateDeContrat) {
+    public Contrat(String nom_client, String description, int montant, Date dateDeContrat,String image) {
         this.nom_client = nom_client;
         this.description = description;
         this.montant = montant;
         this.date_contrat = dateDeContrat;
+        this.image = image;
     }
 
     @Override

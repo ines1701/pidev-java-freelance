@@ -16,7 +16,7 @@ public class ServiceContrat implements CRUD<Contrat> {
 
     @Override
     public void insertOne(Contrat contrat) throws SQLException {
-        String req = "INSERT INTO `contrat`(`nom_client`, `montant`, `description`, `date_contrat`) VALUES (?, ?, ?, ?)";
+        String req = "INSERT INTO `contrat`(`nom_client`, `montant`, `description`, `date_contrat`,`image`) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setString(1, contrat.getNom_client());
@@ -24,20 +24,21 @@ public class ServiceContrat implements CRUD<Contrat> {
         ps.setString(3, contrat.getDescription());
         // Assuming dateDeContrat is java.util.Date, and your DB is expecting a SQL date
         ps.setDate(4, contrat.getDateDeContrat() != null ? new java.sql.Date(contrat.getDateDeContrat().getTime()) : null);
-
+        ps.setString(5, contrat.getImage());
         ps.executeUpdate();
     }
 
     @Override
     public void updateOne(Contrat contrat) throws SQLException {
-        String sql = "UPDATE contrat SET nom_client=?, montant=?, description=?,date_contrat=? WHERE id=?";
+        String sql = "UPDATE contrat SET nom_client=?, montant=?, description=?,date_contrat=?,image=? WHERE id=?";
 
         try (PreparedStatement statement = cnx.prepareStatement(sql)) {
             statement.setString(1, contrat.getNom_client());
             statement.setInt(2, contrat.getMontant());
             statement.setString(3, contrat.getDescription());
             statement.setDate(4, contrat.getDateDeContrat() != null ? new java.sql.Date(contrat.getDateDeContrat().getTime()) : null);
-            statement.setInt(5, contrat.getId());
+            statement.setString(5, contrat.getDescription());
+            statement.setInt(6, contrat.getId());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated == 0) {

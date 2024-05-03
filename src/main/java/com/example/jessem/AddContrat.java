@@ -7,11 +7,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Contrat;
 import services.ServiceContrat;
 import utils.InputValidation;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -26,6 +28,9 @@ public class AddContrat implements Initializable {
 
     @FXML
     private ImageView brandingImageView;
+    @FXML
+    private ImageView imageView;
+    private String imagePathInDatabase;
 
     @FXML
     private Button cancelButton;
@@ -90,11 +95,19 @@ public class AddContrat implements Initializable {
                 InputValidation.showAlert("Input Error", null, "Please fill in all fields including the date.");
                 return;
             }
+            if (imagePathInDatabase == null || imagePathInDatabase.isEmpty()) {
+                throw new IllegalArgumentException("Veuillez sélectionner une image.");
+            }
+
+            // Obtenir le nom du fichier à partir du chemin complet de l'image
+            File imageFile = new File(imagePathInDatabase);
+            String imageName = imageFile.getName();
+
 
             Integer selectedMontant = Integer.parseInt(montantText);
 
             // Pass dateDeContrat to the constructor
-            Contrat contrat = new Contrat(selectedNomClient, selectedDescription, selectedMontant, dateDeContrat);
+            Contrat contrat = new Contrat(selectedNomClient, selectedDescription, selectedMontant, dateDeContrat,imageName);
 
             ServiceContrat st = new ServiceContrat();
             st.insertOne(contrat);
@@ -131,5 +144,20 @@ public class AddContrat implements Initializable {
     @FXML
     private void sendSMS(ActionEvent event) {
 
+    }
+
+    public void browseImageAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            imagePathInDatabase = selectedFile.getAbsolutePath();
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
     }
 }

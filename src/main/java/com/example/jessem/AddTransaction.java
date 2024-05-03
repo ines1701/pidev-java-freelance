@@ -125,7 +125,7 @@ public class AddTransaction implements Initializable {
             ServiceTransaction transactionService = new ServiceTransaction();
             transactionService.insertOne(transaction);
             System.out.println("Transaction added successfully.");
-            showNotification("Success", "contrat added successfully!");
+            showNotification("Success", "transaction added successfully!");
 
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();

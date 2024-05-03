@@ -4,6 +4,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -40,6 +41,13 @@
         <Button fx:id="confirmerButton" layoutX="413.0" layoutY="397.0" mnemonicParsing="false" onAction="#updateOne" style="-fx-background-color: #2A914D;" text="Confirmer" textFill="WHITE" />
         <Button fx:id="cancelButton" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #E96151;" text="Fermer" textFill="WHITE" />
       <Label layoutX="55.0" layoutY="283.0" text="date_contrat">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+        <ImageView fx:id="imageView" fitHeight="39.0" fitWidth="78.0" layoutX="98.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="selectImage" layoutX="195.0" layoutY="350.0" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="5.0" prefWidth="16.0" text="Click" />
+      <Label layoutX="53.0" layoutY="331.0" text="image">
          <font>
             <Font size="13.0" />
          </font>

@@ -7,11 +7,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Contrat;
 import services.ServiceContrat;
 import utils.InputValidation;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -29,6 +31,11 @@ public class UpdateContrat implements Initializable {
 
     @FXML
     private Button cancelButton;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private Button selectImage;
+    private String imagePathInDatabase;
 
     @FXML
     private Button confirmerButton;
@@ -58,6 +65,7 @@ public class UpdateContrat implements Initializable {
         try {
             Image brandingImage = new Image(getClass().getResource("/images/lock-removebg-preview.png").toString());
             brandingImageView.setImage(brandingImage);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,6 +94,12 @@ public class UpdateContrat implements Initializable {
                 localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
             dateDeContratPicker.setValue(localDate);
+        }
+
+        imagePathInDatabase = selectedContrat.getImage();
+        if (imagePathInDatabase != null && !imagePathInDatabase.isEmpty()) {
+            Image image = new Image(new File(imagePathInDatabase).toURI().toString());
+            imageView.setImage(image);
         }
     }
 
@@ -119,7 +133,7 @@ public class UpdateContrat implements Initializable {
             }
 
             // Creating the Contrat object with the collected information
-            Contrat contrat = new Contrat(selectedContrat.getId(), selectedNomClient, selectedDescription, selectedMontant, selectedDateDeContrat);
+            Contrat contrat = new Contrat(selectedContrat.getId(), selectedNomClient, selectedDescription, selectedMontant, selectedDateDeContrat,imagePathInDatabase);
             ServiceContrat st = new ServiceContrat();
             st.updateOne(contrat);
             System.out.println("Contrat updated successfully.");
@@ -138,4 +152,18 @@ public class UpdateContrat implements Initializable {
         }
     }
 
+    public void browseImageAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            imagePathInDatabase = selectedFile.getAbsolutePath();
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
+    }
 }
