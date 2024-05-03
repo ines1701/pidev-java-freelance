@@ -126,4 +126,36 @@ public class ServiceEvent implements CRUD<Event> {
         }
     }
 
+    public ObservableList<Event> searchByTitle(String title) throws SQLException {
+        ObservableList<Event> events = FXCollections.observableArrayList();
+
+        // Requête SQL pour récupérer les événements par titre
+        String query = "SELECT * FROM event WHERE titre LIKE ?";
+
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            // Définir le titre à rechercher dans la requête SQL avec le joker %
+            statement.setString(1, "%" + title + "%");
+
+            // Exécuter la requête SQL
+            try (ResultSet resultSet = statement.executeQuery()) {
+                // Parcourir les résultats de la requête
+                while (resultSet.next()) {
+                    // Créer un objet Event pour chaque ligne de résultat
+                    Event event = new Event();
+                    event.setId(resultSet.getInt("id"));
+                    event.setTitre(resultSet.getString("titre"));
+                    event.setDescrib(resultSet.getString("describ"));
+                    event.setDate(resultSet.getTimestamp("date"));
+
+                    // Ajouter l'événement à la liste
+                    events.add(event);
+                }
+            }
+        }
+
+        return events;
+    }
+
+
+
 }
