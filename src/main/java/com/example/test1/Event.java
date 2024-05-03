@@ -1,6 +1,9 @@
 package com.example.test1;
 
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -13,9 +16,12 @@ public class Event {
 
     private Timestamp date;
 
+    private EventType eventType;
+
+    private StringProperty etat;
 
     public Event() {
-
+        this.etat = new SimpleStringProperty(); // Initialisation de l'attribut etat
     }
 
     public int getId() {
@@ -58,13 +64,28 @@ public class Event {
         this.date = date;
     }
     // Modifiez le constructeur pour inclure le nouvel attribut
+    // Modifiez le constructeur pour inclure le nouvel attribut
     public Event(String titre, String describ, String lieu, Timestamp date) {
         this.titre = titre;
         this.describ = describ;
         this.lieu = lieu;
         this.date = date;
+        this.etat = new SimpleStringProperty(); // Initialisation de l'attribut etat
     }
 
+
+    // Méthodes getter et setter pour l'attribut etat
+    public String getEtat() {
+        return etat.get();
+    }
+
+    public StringProperty etatProperty() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat.set(etat);
+    }
 
     @Override
     public String toString() {
@@ -79,6 +100,5 @@ public class Event {
 
     public void setDate(Date sqlDate) {
     }
-
 
 }

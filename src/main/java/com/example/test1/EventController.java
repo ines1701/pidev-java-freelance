@@ -54,6 +54,9 @@ public class EventController implements Initializable {
 
 
     @FXML
+    private TableColumn<Event, String> cEtat;
+
+    @FXML
     private TextArea tDescrib;
 
     @FXML
@@ -185,6 +188,7 @@ public class EventController implements Initializable {
         cDescrib.setCellValueFactory(new PropertyValueFactory<>("describ"));
         cLieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
         cDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        cEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
         // Configuration du listener pour la sélection dans la TableView
         TableEvent.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -206,6 +210,7 @@ public class EventController implements Initializable {
         cDescrib.setCellValueFactory(new PropertyValueFactory<>("describ"));
         cLieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
         cDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        cEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
         // Appeler la méthode pour afficher les détails de l'événement sélectionné lorsque la sélection change
         TableEvent.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -221,11 +226,25 @@ public class EventController implements Initializable {
         try {
             serviceEvent = new ServiceEvent();
             ObservableList<Event> eventsData = serviceEvent.selectAll();
+
+            // Déterminez l'état de chaque événement
+            for (Event event : eventsData) {
+                if (event.getDate() != null) {
+                    if (event.getDate().toLocalDateTime().toLocalDate().isBefore(LocalDate.now())) {
+                        event.setEtat("Terminé");
+                    } else {
+                        event.setEtat("A venir");
+                    }
+                }
+            }
+
             TableEvent.setItems(eventsData);
         } catch (SQLException e) {
             showErrorAlert("Erreur lors de l'affichage des événements", e.getMessage());
         }
     }
+
+
 
     private void afficherEventSelectionnee() {
         if (eventSelectionnee != null) {

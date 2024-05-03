@@ -71,7 +71,7 @@ public class ServiceEvent implements CRUD<Event> {
     public ObservableList<Event> selectAll() throws SQLException {
         ObservableList<Event> eventsList = FXCollections.observableArrayList();
 
-        String req = "SELECT titre, describ, lieu, date FROM event"; // Sélectionnez également la colonne de date
+        String req = "SELECT titre, describ, lieu, date FROM event"; // Sélectionnez uniquement les colonnes nécessaires
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(req);
 
@@ -87,6 +87,8 @@ public class ServiceEvent implements CRUD<Event> {
 
         return eventsList;
     }
+
+
 
     public Event selectById(int eventId) throws SQLException {
         String query = "SELECT * FROM event WHERE id = ?";
