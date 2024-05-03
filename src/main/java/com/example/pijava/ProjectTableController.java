@@ -53,6 +53,11 @@ public class ProjectTableController {
     private Project selectedProject;
     @FXML
     private GridPane menuGrid;
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private TextField searchField;
 
     @FXML
     private ScrollPane menuScroll;
@@ -69,6 +74,9 @@ public class ProjectTableController {
             }
         });
         initializeTableViewForAll();*/
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            rechercher();
+        });
         afficheCard();
     }
     /*@FXML
@@ -191,4 +199,46 @@ public class ProjectTableController {
             }
         }
     }
+
+    @FXML
+    private void rechercher() {
+        String keyword = searchField.getText().trim().toLowerCase();
+        filterCards(keyword);
+    }
+
+    private void filterCards(String keyword) {
+        menuGrid.getChildren().clear();
+
+        int row = 0;
+        int column = 1;
+        for (Project project : cardListProject) {
+            if (projectMatchesKeyword(project, keyword)) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/CardProject.fxml"));
+                    AnchorPane projectCard = loader.load();
+                    CardProjectController formCard = loader.getController();
+                    formCard.setProject(project);
+
+                    menuGrid.add(projectCard, column, row);
+
+                    column++;
+                    if (column == 4) {
+                        column = 1;
+                        row++;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private boolean projectMatchesKeyword(Project project, String keyword) {
+        return project.getTitre().toLowerCase().contains(keyword) ||
+                project.getCategorie().toLowerCase().contains(keyword) ||
+                project.getPeriode().toLowerCase().contains(keyword) ||
+                project.getPortee().toLowerCase().contains(keyword) ||
+                project.getDescription().toLowerCase().contains(keyword);
+    }
+
 }

@@ -28,7 +28,6 @@
                         <TableColumn fx:id="porteeColumn" prefWidth="103.20001220703125" text="Portée" />
                         <TableColumn fx:id="descriptionColumn" prefWidth="203.2000732421875" text="Description" />
                         <TableColumn fx:id="budgetColumn" minWidth="0.0" prefWidth="136.0" text="Budget" />
-                  <TableColumn prefWidth="75.0" text="Column X" />
                     </columns>
                 </TableView>
             <TextField fx:id="pDescription" layoutX="672.0" layoutY="52.0" promptText="Description" />

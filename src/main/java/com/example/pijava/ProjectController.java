@@ -1,5 +1,7 @@
 package com.example.pijava;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -308,8 +310,17 @@ public class ProjectController {
         if (selectedProject != null) {
             pTitre.setText(selectedProject.getTitre());
             pCategorie.setText(selectedProject.getCategorie());
-            pBoxPrd.setValue(selectedProject.getPeriode());
-            pBoxPortee.setValue(selectedProject.getPortee());
+
+            if (pBoxPrd.getItems().contains(selectedProject.getPeriode())) {
+                System.out.println(selectedProject.getPeriode());
+
+            }
+
+            if (pBoxPortee.getItems().contains(selectedProject.getPortee())) {
+                System.out.println(selectedProject.getPortee());
+
+            }
+
             pDescription.setText(selectedProject.getDescription());
             pBudget.setText(String.valueOf(selectedProject.getBudget()));
         }
@@ -450,5 +461,7 @@ public class ProjectController {
             showErrorAlert("Erreur", "Veuillez sélectionner un projet.");
         }
     }
+
+
 
 }
