@@ -16,6 +16,8 @@ import services.PostService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AfficherPost {
 
@@ -112,4 +114,18 @@ public class AfficherPost {
             e.printStackTrace();
         }
     }
+    /* @FXML
+    void exportToPDF(ActionEvent event) {
+        String filePath = "C:\\Users\\asus\\Desktop\\Projetjava\\src\\main\\resources\\postsData.pdf";
+
+        try {
+            ExportPDF exportPDF = new ExportPDF();
+            exportPDF.generatePDF(filePath, postListView); // Pass postListView directly
+            System.out.println("Data exported to " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+*/
+
 }

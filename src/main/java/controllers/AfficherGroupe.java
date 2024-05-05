@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Post;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,18 +8,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import entities.Groupe;
 import services.GroupeService;
-
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AfficherGroupe {
     @FXML
     private TextField searchTextField;
+
+    @FXML
+    private Button sortButton;
+    private boolean isAscendingOrder = true;
 
     @FXML
     private ListView<Groupe> groupeListView;
@@ -67,6 +76,9 @@ public class AfficherGroupe {
         contextMenu.getItems().add(updateMenuItem);
 
         // Ajouter un élément de menu pour ajouter un post
+
+
+
         MenuItem addPostMenuItem = new MenuItem("Ajouter un post");
         addPostMenuItem.setOnAction(event -> {
             try {
@@ -81,6 +93,11 @@ public class AfficherGroupe {
     }
     @FXML
     private Button addgroupe;
+
+
+//ajouter groupe
+
+
 
     @FXML
     void addgroupeon(ActionEvent event) {
@@ -99,6 +116,9 @@ public class AfficherGroupe {
             e.printStackTrace();
         }
     }
+// ajouter post avec la boutton droite
+
+
 
     private void ajouterPost(Groupe groupe) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPost.fxml"));
@@ -106,12 +126,21 @@ public class AfficherGroupe {
         AjouterPost controller = loader.getController();
 
         // Passer l'ID du groupe à la page d'ajout de post
+
+
         controller.initialize(groupe.getId());
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
+
+    //mise a jour du groupe avec la boutton droite
+
+
+
     private void mettreAJourGroupe(Groupe groupe) throws IOException {
         Long groupeId = groupe.getId();
 
@@ -131,6 +160,9 @@ public class AfficherGroupe {
         stage.show();
     }
 
+// supprimer groupe button droite
+
+
 
     private void supprimerGroupe(Groupe groupe) {
         int id = groupe.getId().intValue();
@@ -147,6 +179,8 @@ public class AfficherGroupe {
 
 
 
+// recherche avec condition (recherche avec condition )
+
 
     public void rechercher(ActionEvent actionEvent) {
         String keyword = searchTextField.getText().trim();
@@ -156,12 +190,16 @@ public class AfficherGroupe {
         groupeListView.setItems(observableSearchResults);
 
         // Afficher une notification si la recherche est réussie
+
+
         if (!searchResults.isEmpty()) {
             showAlert(Alert.AlertType.INFORMATION, "Recherche réussie", "La recherche a abouti à des résultats.");
         }
     }
 
     // Méthode utilitaire pour afficher une boîte de dialogue
+
+
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -173,6 +211,12 @@ public class AfficherGroupe {
     public void actualiser(ActionEvent actionEvent) {
         afficherTousLesGroupes();
     }
+
+
+
+    // afficher la liste de groupe
+
+
 
     private void afficherTousLesGroupes() {
         List<Groupe> groupes = groupeService.getAll();
@@ -196,4 +240,68 @@ public class AfficherGroupe {
             }
         });
     }
+
+
+
+//  statistique
+
+
+
+    @FXML
+    private void showCategoryStatistics(ActionEvent event) {
+        // Get the list of all posts from the table
+        List<Groupe> ListView = groupeListView.getItems();
+
+        // Count occurrences of each category
+        Map<String, Long> categoryCounts = ListView.stream()
+                .collect(Collectors.groupingBy(Groupe::getGroupe, Collectors.counting()));
+
+        // Create a PieChart Data list
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<String, Long> entry : categoryCounts.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        // Create a PieChart
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Category Statistics");
+
+        // Create a new alert dialog with PieChart as the content
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Category Statistics");
+        alert.setHeaderText(null);
+        alert.getDialogPane().setContent(pieChart);
+        alert.showAndWait();
+    }
+
+
+
+// filtrer avec l'ordre alphabetique
+
+
+
+   /* @FXML
+    private void sortAlphabetically(ActionEvent event) {
+        ObservableList<Groupe> items = groupeListView.getItems();
+
+        if (isAscendingOrder) {
+            // Sort the data alphabetically in ascending order by the "groupe" attribute
+            items.sort(Comparator.comparing(Groupe::getGroupe));
+            // Change the button color to indicate ascending order
+            sortButton.setStyle("-fx-background-color: #4682B4;");
+        } else {
+            // Sort the data alphabetically in descending order by the "groupe" attribute
+            items.sort(Comparator.comparing(Groupe::getGroupe, String.CASE_INSENSITIVE_ORDER).reversed());
+            // Change the button color to indicate descending order
+            sortButton.setStyle("-fx-background-color: #FFA07A;");
+        }
+
+        // Toggle the sorting order for the next click
+        isAscendingOrder = !isAscendingOrder;
+
+        // Refresh the table view with the sorted data
+        groupeListView.setItems(items);
+    }*/
+
+
 }

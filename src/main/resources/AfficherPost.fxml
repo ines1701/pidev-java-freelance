@@ -3,18 +3,59 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherPost">
+<AnchorPane prefHeight="570.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherPost">
 
     <!-- ListView pour afficher les posts -->
-    <ListView fx:id="postListView" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" />
+    <ListView fx:id="postListView" layoutX="211.0" layoutY="254.0" prefHeight="222.0" prefWidth="411.0" />
 
     <!-- Champ de texte pour la recherche -->
-    <TextField fx:id="searchTextField" layoutX="50.0" layoutY="360.0" prefWidth="400.0" promptText="Rechercher" />
+    <TextField fx:id="searchTextField" layoutX="211.0" layoutY="208.0" prefHeight="25.0" prefWidth="325.0" promptText="Rechercher" />
 
     <!-- Bouton pour démarrer la recherche -->
-    <Button layoutX="460.0" layoutY="360.0" onAction="#rechercherPosts" text="Rechercher" />
-   <Button fx:id="goback" layoutY="2.0" mnemonicParsing="false" onAction="#goback" text="&lt;" />
+    <Button layoutX="563.0" layoutY="208.0" onAction="#rechercherPosts" style="-fx-background-color: #ff0900;" text="Rechercher" textFill="WHITE" />
+   <AnchorPane prefHeight="570.0" prefWidth="173.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <ImageView fitHeight="64.0" fitWidth="119.0" layoutX="27.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../samar/src/main/resources/images/logo.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="goback" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="&lt;" textFill="#3adb70" />
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="173.0" prefHeight="115.0" prefWidth="513.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Text layoutX="168.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher Post" wrappingWidth="177.33331298828125">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.3170346762479668" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.8801169395446777" green="0.9473684430122375" blue="0.8834795355796814" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.3960784375667572" green="0.41960784792900085" blue="0.40784314274787903" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 
 </AnchorPane>

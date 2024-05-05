@@ -35,29 +35,11 @@ public class ModifierPost {
         if (post != null) {
             descriptionTextArea.setText(post.getDescription());
             nomTextField.setText(post.getNom());
-        } else {
-            // Handle the case where the post is not found
         }
     }
 
     @FXML
     void modifierPost(ActionEvent event) {
-        if (descriptionTextArea.getText().isEmpty()) {
-            descriptionErrorLabel.setText("Description is required.");
-            descriptionErrorLabel.setStyle("-fx-text-fill: red;");
-            return;
-        } else {
-            descriptionErrorLabel.setText("");
-        }
-
-        if (nomTextField.getText().isEmpty()) {
-            nomErrorLabel.setText("Nom is required.");
-            nomErrorLabel.setStyle("-fx-text-fill: red;");
-            return;
-        } else {
-            nomErrorLabel.setText("");
-        }
-
         post.setDescription(descriptionTextArea.getText());
         post.setNom(nomTextField.getText());
 

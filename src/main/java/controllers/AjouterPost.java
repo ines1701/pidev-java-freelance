@@ -4,6 +4,7 @@ import entities.Groupe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,9 +21,6 @@ public class AjouterPost {
     private TextArea descriptionTextArea;
 
     @FXML
-    private Label descriptionErrorLabel;
-
-    @FXML
     private Label nomErrorLabel;
 
     @FXML
@@ -30,8 +28,8 @@ public class AjouterPost {
 
     private Long groupeId;
 
-    @FXML
-    private Button back;
+   /* @FXML
+    private Button back;*/
 
     @FXML
     private Button posts;
@@ -46,23 +44,6 @@ public class AjouterPost {
     void ajouterPost(ActionEvent event) {
         String description = descriptionTextArea.getText().trim();
         String nom = nomTextField.getText().trim();
-
-        // Validate fields
-        if (description.isEmpty()) {
-            descriptionErrorLabel.setText("Description is required.");
-            descriptionErrorLabel.setStyle("-fx-text-fill: red;");
-            return;
-        } else {
-            descriptionErrorLabel.setText("");
-        }
-
-        if (nom.isEmpty()) {
-            nomErrorLabel.setText("Nom is required.");
-            nomErrorLabel.setStyle("-fx-text-fill: red;");
-            return;
-        } else {
-            nomErrorLabel.setText("");
-        }
 
         // Create a new post
         Post newPost = new Post();
@@ -91,12 +72,10 @@ public class AjouterPost {
         alert.showAndWait();
     }
 
-
-
-    @FXML
+    /*@FXML
     void backon(ActionEvent event) {
         loadView("/AfficherGroupe.fxml");
-    }
+    }*/
 
     @FXML
     void postson(ActionEvent event) {
@@ -112,7 +91,7 @@ public class AjouterPost {
             stage.show();
 
             // Fermer le stage (fenêtre) actuel
-            Stage currentStage = (Stage) back.getScene().getWindow();
+            Stage currentStage = (Stage) posts.getScene().getWindow();
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();

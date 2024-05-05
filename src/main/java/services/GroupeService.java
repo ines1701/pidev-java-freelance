@@ -28,6 +28,7 @@ public class GroupeService implements CrudInterface<Groupe> {
     }
 
     @Override
+    // cette fontcion c"est ajouter groupe
     public void create(Groupe groupe) {
         String query = "INSERT INTO Groupe (groupe, description, date_de_creation, nom, image) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pst = cnx.prepareStatement(query)) {
@@ -49,6 +50,8 @@ public class GroupeService implements CrudInterface<Groupe> {
     }
 
     @Override
+
+    // cette fonction c'est modifier groupe
     public void update(Groupe groupe) {
 
         String query = "UPDATE Groupe SET groupe=?, description=?, date_de_creation=?, nom=?, image=? WHERE id=?";
@@ -78,6 +81,7 @@ public class GroupeService implements CrudInterface<Groupe> {
 
 
     @Override
+    // cette fonction c'est supprimer groupe
     public void delete(int id) {
         String query = "DELETE FROM Groupe WHERE id=?";
         try (PreparedStatement pst = cnx.prepareStatement(query)) {

@@ -7,26 +7,74 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierPost">
+<AnchorPane prefHeight="519.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierPost">
 
     <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <Label text="Modifier le post" />
 
-        <HBox spacing="10">
-            <Label text="Description :" />
-            <TextArea fx:id="descriptionTextArea" prefHeight="100" prefWidth="310.0" />
-            <Label fx:id="descriptionErrorLabel" prefHeight="97.0" prefWidth="158.0" />
-        </HBox>
-
-        <!-- Ajoutez ici d'autres champs pour les attributs de la classe Post -->
-        <HBox spacing="10">
-            <Label text="Nom :" />
-            <TextField fx:id="nomTextField" />
-            <Label fx:id="nomErrorLabel" prefHeight="24.0" prefWidth="251.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
-
-        <Button onAction="#modifierPost" text="Modifier" />
+        <HBox spacing="10" />
     </VBox>
+
+     <Button layoutX="431.0" layoutY="473.0" onAction="#modifierPost" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #50cc58;" text="Modifier" textFill="WHITE" />
+      <TextField fx:id="nomTextField" layoutX="334.0" layoutY="238.0" />
+      <Label layoutX="245.0" layoutY="242.0" text="Nom :" />
+      <TextArea fx:id="descriptionTextArea" layoutX="334.0" layoutY="312.0" prefHeight="39.0" prefWidth="301.0" />
+      <Label layoutX="244.0" layoutY="323.0" text="Description :" />
+   <AnchorPane layoutY="-7.0" prefHeight="580.0" prefWidth="173.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Button fx:id="goback" layoutX="2.0" layoutY="14.0" mnemonicParsing="false" text="&lt;" textFill="#3adb70" />
+         <Text layoutX="12.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" wrappingWidth="149.33333333333326">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.48422711730379414" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="173.0" prefHeight="130.0" prefWidth="601.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Text layoutX="212.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier post" wrappingWidth="177.33331298828125">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.3264984347466791" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.6737329363822937" green="0.6929824352264404" blue="0.6746954321861267" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.31037017703056335" green="0.3245614171028137" blue="0.3075319528579712" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 
 </AnchorPane>

@@ -4,45 +4,74 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateGroupe">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateGroupe">
+    <Button layoutX="486.0" layoutY="520.0" onAction="#updateGroupe" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #28e028;" text="Modifier" textFill="WHITE" />
 
-    <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-
-        <Label style="-fx-font-size: 18px;" text="Modifier un Groupe" />
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label fx:id="idLabel" />
-        </HBox>
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Nom :" />
-            <TextField fx:id="nomTextField" />
-            <Label fx:id="nomErrorLabel" prefHeight="18.0" prefWidth="272.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Groupe :" />
-            <TextField fx:id="groupeTextField" />
-            <Label fx:id="groupeErrorLabel" prefHeight="18.0" prefWidth="281.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Description :" />
-            <TextField fx:id="descriptionTextField" prefHeight="26.0" prefWidth="310.0" />
-            <Label fx:id="descriptionErrorLabel" prefHeight="18.0" prefWidth="142.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Image URL :" />
-            <TextField fx:id="imageTextField" />
-            <Label fx:id="imageErrorLabel" prefHeight="18.0" prefWidth="222.0" style="-fx-text-fill: red;" text="" />
-
-            <Button onAction="#uploadImage" prefHeight="15.0" prefWidth="66.0" text="Uploader Image" />
-        </HBox>
-    </VBox>
-    <Button layoutX="231.0" layoutY="237.0" onAction="#updateGroupe" text="Modifier" />
+    <Button layoutX="486.0" layoutY="466.0" onAction="#uploadImage" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #9f9a9a;" text="Upload Image" textFill="WHITE" />
+    <TextField fx:id="imageTextField" layoutX="428.0" layoutY="413.0" prefHeight="25.0" prefWidth="233.0" />
+    <Label layoutX="242.0" layoutY="417.0" text="Image URL :" />
+    <TextField fx:id="descriptionTextField" layoutX="428.0" layoutY="357.0" prefHeight="26.0" prefWidth="233.0" />
+    <Label layoutX="240.0" layoutY="361.0" text="Description :" />
+    <TextField fx:id="groupeTextField" layoutX="428.0" layoutY="297.0" prefHeight="25.0" prefWidth="233.0" />
+    <Label layoutX="242.0" layoutY="301.0" text="Groupe :" />
+    <TextField fx:id="nomTextField" layoutX="428.0" layoutY="233.0" prefHeight="25.0" prefWidth="233.0" />
+    <Label layoutX="242.0" layoutY="237.0" text="Nom :" />
+    <AnchorPane layoutY="-1.0" prefHeight="605.0" prefWidth="166.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Text layoutX="6.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" wrappingWidth="110.66668701171898">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.48422711730379414" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.07797271013259888" green="0.07894736528396606" blue="0.07802144438028336" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+    </AnchorPane>
+    <AnchorPane layoutX="166.0" prefHeight="138.0" prefWidth="697.0" style="-fx-background-color: #1DB954;">
+        <children>
+            <Text layoutX="288.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Groupe " wrappingWidth="194.66662597656273">
+                <fill>
+                    <RadialGradient centerX="0.38560887016493456" centerY="0.48422711730379414" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.654321014881134" green="0.6666666865348816" blue="0.654938280582428" />
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.18801891803741455" green="0.19298245012760162" blue="0.18702620267868042" />
+                                </color>
+                            </Stop>
+                        </stops>
+                    </RadialGradient>
+                </fill>
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Text>
+            <Button fx:id="posts" layoutX="653.0" layoutY="4.0" mnemonicParsing="false" text="&gt;" textFill="#4bd056" />
+        </children>
+    </AnchorPane>
 
 </AnchorPane>

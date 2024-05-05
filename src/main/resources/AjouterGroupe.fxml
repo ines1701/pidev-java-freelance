@@ -6,40 +6,85 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterGroupe">
+<AnchorPane prefHeight="599.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterGroupe">
 
-    <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+   <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 
-        <Label style="-fx-font-size: 18px;" text="Ajouter un Groupe" />
+      <HBox alignment="CENTER" spacing="10" />
 
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Nom :" />
-            <TextField fx:id="nomTextField" />
-            <Label fx:id="nomErrorLabel" prefHeight="18.0" prefWidth="272.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
+      <HBox alignment="CENTER" spacing="10" />
 
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Groupe :" />
-            <TextField fx:id="groupeTextField" />
-            <Label fx:id="groupeErrorLabel" prefHeight="18.0" prefWidth="281.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
+      <HBox alignment="CENTER" spacing="10" />
+   </VBox>
+   <Button layoutX="444.0" layoutY="516.0" onAction="#ajouterGroupe" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #35d038;" text="Ajouter" textFill="WHITE" />
+   <AnchorPane layoutY="-3.0" prefHeight="605.0" prefWidth="177.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Button fx:id="goback" layoutX="10.0" layoutY="21.0" mnemonicParsing="false" onAction="#gotoaffiche" text="&lt;" textFill="#3adb70" />
+         <Text layoutX="27.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" wrappingWidth="123.33333333333348">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.48422711730379414" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Description :" />
-            <TextField fx:id="descriptionTextField" prefHeight="26.0" prefWidth="310.0" />
-            <Label fx:id="descriptionErrorLabel" prefHeight="18.0" prefWidth="142.0" style="-fx-text-fill: red;" text="" />
-        </HBox>
-
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="Image URL :" />
-            <TextField fx:id="imageTextField" />
-            <Label fx:id="imageErrorLabel" prefHeight="18.0" prefWidth="222.0" style="-fx-text-fill: red;" text="" />
-   
-           <Button onAction="#uploadImage" prefHeight="15.0" prefWidth="66.0" text="Uploader Image" />
-        </HBox>
-    </VBox>
-     <Button layoutX="231.0" layoutY="237.0" onAction="#ajouterGroupe" text="Ajouter" />
-   <Button fx:id="gotoaffichage" layoutY="1.0" mnemonicParsing="false" onAction="#gotoaffiche" text="&lt;" />
+   <Button layoutX="452.0" layoutY="424.0" onAction="#uploadImage" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #2e35bc;" text="Upload Image" textFill="#ebebeb" />
+   <TextField fx:id="imageTextField" layoutX="369.0" layoutY="369.0" prefHeight="25.0" prefWidth="273.0" />
+   <Label layoutX="260.0" layoutY="373.0" text="Image URL :" />
+   <TextField fx:id="descriptionTextField" layoutX="369.0" layoutY="325.0" prefHeight="26.0" prefWidth="273.0" />
+   <Label layoutX="259.0" layoutY="329.0" text="Description :" />
+   <TextField fx:id="groupeTextField" layoutX="369.0" layoutY="287.0" prefHeight="25.0" prefWidth="273.0" />
+   <Label layoutX="259.0" layoutY="283.0" text="Groupe :" />
+   <TextField fx:id="nomTextField" layoutX="369.0" layoutY="244.0" prefHeight="25.0" prefWidth="273.0" />
+   <Label layoutX="260.0" layoutY="248.0" text="Nom :" />
+   <!-- Add the following Label for groupeErrorLabel -->
+   <Label fx:id="groupeErrorLabel" layoutX="259.0" layoutY="412.0" textFill="RED" />
+   <AnchorPane layoutX="173.0" prefHeight="130.0" prefWidth="601.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Text layoutX="212.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Groupe" wrappingWidth="177.33331298828125">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.3517349676378894" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.8722926378250122" green="0.8859649300575256" blue="0.8729762434959412" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.4072720408439636" green="0.429824560880661" blue="0.40839967131614685" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 
 </AnchorPane>

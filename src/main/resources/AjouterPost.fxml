@@ -7,28 +7,80 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterPost">
+<AnchorPane prefHeight="529.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterPost">
 
-    <VBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <Label text="Ajouter un nouveau post" />
+    <VBox alignment="CENTER" layoutX="202.0" layoutY="139.0" prefHeight="430.0" prefWidth="616.0" spacing="10" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="139.0">
 
-        <HBox spacing="10">
+        <HBox prefHeight="100.0" prefWidth="555.0" spacing="10">
             <Label text="Description :" />
             <TextArea fx:id="descriptionTextArea" prefHeight="100" prefWidth="310.0" />
-            <Label fx:id="descriptionErrorLabel" prefHeight="97.0" prefWidth="158.0" />
         </HBox>
 
         <!-- Ajoutez ici d'autres champs pour les attributs de la classe Post -->
         <HBox spacing="10">
             <Label prefHeight="18.0" prefWidth="74.0" text="Nom :" />
             <TextField fx:id="nomTextField" />
-            <Label fx:id="nomErrorLabel" prefHeight="29.0" prefWidth="345.0" style="-fx-text-fill: red;" text="" />
         </HBox>
 
-        <Button onAction="#ajouterPost" text="Ajouter" />
+        <Button onAction="#ajouterPost" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #4ecc38;" text="Ajouter" textFill="WHITE" />
     </VBox>
-   <Button fx:id="back" layoutX="8.0" layoutY="2.0" mnemonicParsing="false" onAction="#backon" text="&lt;" />
-   <Button fx:id="posts" layoutX="568.0" layoutY="7.0" mnemonicParsing="false" onAction="#postson" text="&gt;" />
+   <AnchorPane layoutX="171.0" layoutY="1.0" prefHeight="138.0" prefWidth="697.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Text layoutX="296.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Post" wrappingWidth="158.00000000000023">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.3895899294302667" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.7908544540405273" green="0.7982456088066101" blue="0.7912240028381348" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.12988683581352234" green="0.1315789520740509" blue="0.12954840064048767" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+         <Button fx:id="posts" layoutX="653.0" layoutY="4.0" mnemonicParsing="false" onAction="#postson" text="&gt;" textFill="#4bd056" />
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutY="1.0" prefHeight="570.0" prefWidth="173.0" style="-fx-background-color: #1DB954;">
+      <children>
+         <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="&lt;" textFill="#3adb70" />
+         <Text layoutX="22.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" wrappingWidth="128.66668701171898">
+            <fill>
+               <RadialGradient centerX="0.5" centerY="0.48422711730379414" focusAngle="67.48" focusDistance="0.35114500904811274" radius="0.3625954635270679">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.06974225491285324" green="0.07017543911933899" blue="0.0697639137506485" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color />
+                        </color>
+                     </Stop>
+                  </stops>
+               </RadialGradient>
+            </fill>
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 
 </AnchorPane>
