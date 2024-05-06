@@ -32,7 +32,7 @@
          <Button fx:id="goback" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="&lt;" textFill="#3adb70" />
       </children>
    </AnchorPane>
-   <AnchorPane layoutX="173.0" prefHeight="115.0" prefWidth="513.0" style="-fx-background-color: #1DB954;">
+   <AnchorPane layoutX="173.0" prefHeight="133.0" prefWidth="513.0" style="-fx-background-color: #1DB954;">
       <children>
          <Text layoutX="168.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher Post" wrappingWidth="177.33331298828125">
             <fill>
