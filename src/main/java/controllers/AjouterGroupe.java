@@ -58,6 +58,19 @@ public class AjouterGroupe {
 
         boolean isInputValid = true;
 
+
+
+        if (groupe.isEmpty()) {
+            groupeErrorLabel.setText("Le champ Groupe est requis");
+            isInputValid = false;
+        }
+
+        if (description.isEmpty()) {
+            descriptionErrorLabel.setText("Le champ Description est requis");
+            isInputValid = false;
+        }
+
+
         if (nom.isEmpty()) {
             groupeErrorLabel.setText("Nom est requis"); // Updated this line
             isInputValid = false;

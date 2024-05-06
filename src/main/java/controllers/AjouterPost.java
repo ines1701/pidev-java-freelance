@@ -22,14 +22,13 @@ public class AjouterPost {
 
     @FXML
     private Label nomErrorLabel;
+    @FXML
+    private Label descriptionErrorLabel;
 
     @FXML
     private TextField nomTextField;
 
     private Long groupeId;
-
-   /* @FXML
-    private Button back;*/
 
     @FXML
     private Button posts;
@@ -44,6 +43,23 @@ public class AjouterPost {
     void ajouterPost(ActionEvent event) {
         String description = descriptionTextArea.getText().trim();
         String nom = nomTextField.getText().trim();
+
+        // Validate fields
+        if (description.isEmpty()) {
+            descriptionErrorLabel.setText("Description is required.");
+            descriptionErrorLabel.setStyle("-fx-text-fill: red;");
+            return;
+        } else {
+            descriptionErrorLabel.setText("");
+        }
+
+        if (nom.isEmpty()) {
+            nomErrorLabel.setText("Nom is required.");
+            nomErrorLabel.setStyle("-fx-text-fill: red;");
+            return;
+        } else {
+            nomErrorLabel.setText("");
+        }
 
         // Create a new post
         Post newPost = new Post();
@@ -62,7 +78,6 @@ public class AjouterPost {
         showAlert(Alert.AlertType.INFORMATION, "Post ajouté", "Le post a été ajouté avec succès.");
     }
 
-
     // Méthode utilitaire pour afficher une boîte de dialogue
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
@@ -71,8 +86,8 @@ public class AjouterPost {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-    /*@FXML
+/*
+    @FXML
     void backon(ActionEvent event) {
         loadView("/AfficherGroupe.fxml");
     }*/

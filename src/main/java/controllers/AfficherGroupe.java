@@ -119,7 +119,6 @@ public class AfficherGroupe {
 // ajouter post avec la boutton droite
 
 
-
     private void ajouterPost(Groupe groupe) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPost.fxml"));
         Parent root = loader.load();
@@ -249,7 +248,7 @@ public class AfficherGroupe {
 
     @FXML
     private void showCategoryStatistics(ActionEvent event) {
-        // Get the list of all posts from the table
+        //  la liste des posts
         List<Groupe> ListView = groupeListView.getItems();
 
         // Count occurrences of each category
@@ -264,11 +263,11 @@ public class AfficherGroupe {
 
         // Create a PieChart
         PieChart pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("Category Statistics");
+        pieChart.setTitle(" Groupe Statistics");
 
         // Create a new alert dialog with PieChart as the content
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Category Statistics");
+        alert.setTitle("groupe Statistics");
         alert.setHeaderText(null);
         alert.getDialogPane().setContent(pieChart);
         alert.showAndWait();
