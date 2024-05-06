@@ -25,7 +25,7 @@
       <Label layoutX="245.0" layoutY="242.0" text="Nom :" />
       <TextArea fx:id="descriptionTextArea" layoutX="334.0" layoutY="312.0" prefHeight="39.0" prefWidth="301.0" />
       <Label layoutX="244.0" layoutY="323.0" text="Description :" />
-   <AnchorPane layoutY="-7.0" prefHeight="580.0" prefWidth="173.0" style="-fx-background-color: #1DB954;">
+   <AnchorPane layoutY="-7.0" prefHeight="580.0" prefWidth="177.0" style="-fx-background-color: #1DB954;">
       <children>
          <Button fx:id="goback" layoutX="2.0" layoutY="14.0" mnemonicParsing="false" text="&lt;" textFill="#3adb70" />
          <Text layoutX="12.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" wrappingWidth="149.33333333333326">

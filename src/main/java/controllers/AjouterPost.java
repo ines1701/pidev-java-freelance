@@ -61,7 +61,8 @@ public class AjouterPost {
             nomErrorLabel.setText("");
         }
 
-        // Create a new post
+        // Creer un nouveau groupe
+
         Post newPost = new Post();
         newPost.setDescription(description);
         newPost.setNom(nom);
