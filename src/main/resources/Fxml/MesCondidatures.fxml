@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="548.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pijava.CondidatureController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-5.0" prefHeight="511.0" prefWidth="204.0" style="-fx-background-color: #5fcf80;">
+      <VBox alignment="TOP_CENTER" layoutX="-5.0" prefHeight="548.0" prefWidth="204.0" style="-fx-background-color: #5fcf80;">
          <children>
             <Text fill="WHITE" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SKILLHUB" textAlignment="CENTER">
                <font>
@@ -48,7 +48,6 @@
             <TableColumn fx:id="lettreCon" prefWidth="136.0" text="Lettre de Motivation" />
             <TableColumn fx:id="cvCon" prefWidth="87.19989013671875" text="CV" />
             <TableColumn fx:id="statutsCon" minWidth="0.0" prefWidth="91.2000732421875" text="Statuts" />
-            <TableColumn prefWidth="75.0" text="Column X" />
         </columns>
       </TableView>
       <Text fill="#5fcf80" layoutX="375.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Condidatures">
